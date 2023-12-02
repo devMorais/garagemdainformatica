@@ -1,0 +1,17 @@
+{
+    "name": "ceogarageminformatica/php",
+    "description": "Loja de informatica",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ceogarageminformatica\\Php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fernando Morais"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
