@@ -2,10 +2,15 @@
 
 namespace sistema\Nucleo;
 
+use sistema\Suporte\Template;
+
 class Controlador
 {
-    public function __construct(string $tema = null)
+
+    protected Template $template;
+
+    public function __construct(string $diretorio)
     {
-        echo $tema;
+        $this->template = new Template($diretorio);
     }
 }

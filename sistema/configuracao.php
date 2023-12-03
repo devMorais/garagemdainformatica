@@ -10,5 +10,7 @@ define('SITE_DESCRICAO', 'Transformando ideias em realidade!');
 
 //urls do sistema
 define('URL_PRODUCAO', 'https://garagemdainformatica.com.br');
-define('URL_DESENVOLVIMENTO', 'http://localhost/blog');
+define('URL_DESENVOLVIMENTO', 'http://localhost/garagem_da_informatica');
+
+define('URL_SITE', 'garagem_da_informatica/');
 
