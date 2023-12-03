@@ -3,7 +3,7 @@
         'name' => 'ceogarageminformatica/php',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'fe0abb638599ffddfaa9878922e81120d75899c4',
+        'reference' => '25bc60ebe23bdc4230f0917c80e313f453821941',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ceogarageminformatica/php' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'fe0abb638599ffddfaa9878922e81120d75899c4',
+            'reference' => '25bc60ebe23bdc4230f0917c80e313f453821941',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
