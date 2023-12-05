@@ -3,7 +3,7 @@ Options -indexes
 
 RewriteEngine On
 
-RewriteBase /garagem_da_informatica
+RewriteBase /loja
 
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d

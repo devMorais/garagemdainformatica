@@ -32,6 +32,9 @@ h5,
 h6 {
     font-family: "Raleway", sans-serif;
 }
+.whatsapp-icon {
+    color: #25d366; /* Cor verde do WhatsApp */
+}
 
 /*--------------------------------------------------------------
 # Back to top button
