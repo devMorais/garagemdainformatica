@@ -1,20 +1,12 @@
 {% extends 'base.html' %}
 {% block conteudo %} 
-<!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center">
-    <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
-        <h1>Bem-vindo</h1>
-        <h2>Transformando ideias em realidade!</h2>
-        <a href="#services" class="btn-get-started scrollto">Iniciar</a>
-    </div>
-</section>
 <main id="main">
     <section id="services" class="portfolio">
         <div class="container">
             <div class="section-title">
-                <span>Serviços</span>
-                <h2>Serviços</h2>
-                <p>Do design inovador à manutenção impecável, nossos serviços integram tecnologia de ponta e criatividade excepcional, assegurando que cada experiência digital seja não apenas envolvente, mas também confiável em sua excelência.</p>
+                <span>{{servico.nome_servico}}</span>
+                <h2>{{servico.nome_servico}}</h2>
+                <p>{{servico.descricao_servico}}</p>
             </div>
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="150">
                 {% for servico in servicos %}

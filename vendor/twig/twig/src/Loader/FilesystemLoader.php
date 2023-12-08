@@ -21,13 +21,13 @@ use Twig\Source;
  */
 class FilesystemLoader implements LoaderInterface
 {
+
     /** Identifier of the main namespace. */
     public const MAIN_NAMESPACE = '__main__';
 
     protected $paths = [];
     protected $cache = [];
     protected $errorCache = [];
-
     private $rootPath;
 
     /**
@@ -36,9 +36,9 @@ class FilesystemLoader implements LoaderInterface
      */
     public function __construct($paths = [], string $rootPath = null)
     {
-        $this->rootPath = ($rootPath ?? getcwd()).\DIRECTORY_SEPARATOR;
+        $this->rootPath = ($rootPath ?? getcwd()) . \DIRECTORY_SEPARATOR;
         if (null !== $rootPath && false !== ($realPath = realpath($rootPath))) {
-            $this->rootPath = $realPath.\DIRECTORY_SEPARATOR;
+            $this->rootPath = $realPath . \DIRECTORY_SEPARATOR;
         }
 
         if ($paths) {
@@ -87,7 +87,7 @@ class FilesystemLoader implements LoaderInterface
         // invalidate the cache
         $this->cache = $this->errorCache = [];
 
-        $checkPath = $this->isAbsolutePath($path) ? $path : $this->rootPath.$path;
+        $checkPath = $this->isAbsolutePath($path) ? $path : $this->rootPath . $path;
         if (!is_dir($checkPath)) {
             throw new LoaderError(sprintf('The "%s" directory does not exist ("%s").', $path, $checkPath));
         }
@@ -103,7 +103,7 @@ class FilesystemLoader implements LoaderInterface
         // invalidate the cache
         $this->cache = $this->errorCache = [];
 
-        $checkPath = $this->isAbsolutePath($path) ? $path : $this->rootPath.$path;
+        $checkPath = $this->isAbsolutePath($path) ? $path : $this->rootPath . $path;
         if (!is_dir($checkPath)) {
             throw new LoaderError(sprintf('The "%s" directory does not exist ("%s").', $path, $checkPath));
         }
@@ -206,15 +206,15 @@ class FilesystemLoader implements LoaderInterface
 
         foreach ($this->paths[$namespace] as $path) {
             if (!$this->isAbsolutePath($path)) {
-                $path = $this->rootPath.$path;
+                $path = $this->rootPath . $path;
             }
 
-            if (is_file($path.'/'.$shortname)) {
-                if (false !== $realpath = realpath($path.'/'.$shortname)) {
+            if (is_file($path . '/' . $shortname)) {
+                if (false !== $realpath = realpath($path . '/' . $shortname)) {
                     return $this->cache[$name] = $realpath;
                 }
 
-                return $this->cache[$name] = $path.'/'.$shortname;
+                return $this->cache[$name] = $path . '/' . $shortname;
             }
         }
 
@@ -272,12 +272,8 @@ class FilesystemLoader implements LoaderInterface
 
     private function isAbsolutePath(string $file): bool
     {
-        return strspn($file, '/\\', 0, 1)
-            || (\strlen($file) > 3 && ctype_alpha($file[0])
-                && ':' === $file[1]
-                && strspn($file, '/\\', 2, 1)
-            )
-            || null !== parse_url($file, \PHP_URL_SCHEME)
+        return strspn($file, '/\\', 0, 1) || (\strlen($file) > 3 && ctype_alpha($file[0]) && ':' === $file[1] && strspn($file, '/\\', 2, 1)
+                ) || null !== parse_url($file, \PHP_URL_SCHEME)
         ;
     }
 }
