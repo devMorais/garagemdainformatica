@@ -24,6 +24,28 @@ class SiteControlador extends Controlador
         ]);
     }
 
+    /**
+     * Busca posts 
+     * @return void
+     */
+    public function buscar(): void
+    {
+        $busca = filter_input(INPUT_POST, 'busca', FILTER_DEFAULT);
+        if (isset($busca)) {
+            $servicos = (new ServicoModelo())->pesquisa($busca);
+            if ($servicos) {
+                foreach ($servicos as $servico) {
+                    echo "<div class='card mb-3'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>$servico->nome_servico</h5>
+                            <a href='" . Helpers::url('servico/') . $servico->id . "' class='btn btn-danger'>Detalhes</a>
+                        </div>
+                      </div>";
+                }
+            }
+        }
+    }
+
     public function servico(int $id): void
     {
         $servico = (new ServicoModelo())->buscaPorId($id);

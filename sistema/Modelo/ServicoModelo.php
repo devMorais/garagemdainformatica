@@ -27,4 +27,13 @@ class ServicoModelo
         $resultado = $stmt->fetch();
         return $resultado;
     }
+
+    public function pesquisa(string $busca): array
+    {
+        $query = "SELECT * FROM servicos WHERE status = 1 AND nome_servico LIKE '%{$busca}%' ";
+        $stmt = Conexao::getInstancia()->query($query);
+        $resultado = $stmt->fetchAll();
+
+        return $resultado;
+    }
 }

@@ -68,6 +68,12 @@ h6 {
     opacity: 1;
 }
 
+/*#typed-output {
+    border-bottom: 4px dotted red;
+    padding-bottom: 5px;  Ajuste conforme necessário 
+    color: white;
+}*/
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -196,9 +202,28 @@ h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
-/**
-* Desktop Navigation 
-*/
+/* Adicione estas regras no seu arquivo CSS ou no estilo interno do HTML */
+
+.social-links {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+}
+
+.social-links a {
+    margin-right: 10px; /* Espaçamento entre os links */
+}
+
+.search-form {
+    margin-left: auto; /* Move o formulário para o lado direito do contêiner pai */
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+}
+
+.form-control {
+    width: 150px; /* Ajuste a largura conforme necessário */
+    margin: 0;
+}
+
 .navbar {
     padding: 0;
 }
