@@ -36,4 +36,11 @@ class ServicoModelo
 
         return $resultado;
     }
+
+    public function armazenar(array $dados): void
+    {
+        $query = "INSERT INTO servicos (categoria_id ,nome_servico, descricao_servico, status) VALUES (:categoria_id, :nome_servico, :descricao_servico, :status);";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute($dados);
+    }
 }

@@ -1,0 +1,54 @@
+{% extends "dashboard.html" %}
+
+{% block conteudo %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{url('admin/dashboard')}}">
+                Home
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Serviços
+        </li>
+    </ol>
+</nav>
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        <form action="{% if servico.id %}{{url('admin/servicos/editar/'~servico.id)}}{% else %}{{url('admin/servicos/cadastrar')}}{% endif %}" method="post">
+            <div class="mb-3">
+                <label for="nome_servico" class="form-label">Nome</label>
+                <input type="text" name="nome_servico" id="nome_servico" value="{{servico.nome_servico}}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="descricao_servico" class="form-label">Descrição</label>
+                <textarea name="descricao_servico" id="descricao_servico" class="form-control" rows="3">{{servico.descricao_servico}}</textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="categoria_id" class="form-label">Categoria</label>
+                        <select class="form-select" name="categoria_id" id="categoria_id">
+                            {% for categoria in categorias %}
+                            <option value="{{categoria.id}}" {% if servico.categoria_id == categoria.id %}selected{% endif %} >{{categoria.nome_categoria}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select" name="status">
+                            <option value="1" {% if categoria.status == '1' %}selected{% endif %}>Ativo</option>
+                            <option value="0" {% if categoria.status == '0' %}selected{% endif %}>Inativo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{% else %}Cadastrar{% endif %}">
+        </form>
+    </div>    
+</div>
+{% endblock %}

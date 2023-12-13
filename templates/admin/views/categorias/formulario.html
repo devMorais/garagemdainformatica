@@ -1,0 +1,37 @@
+{% extends "dashboard.html" %}
+
+{% block conteudo %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{url('admin/dashboard')}}">
+                Home
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Categorias
+        </li>
+    </ol>
+</nav>
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        <form action="{% if categoria.id %}{{url('admin/categorias/editar/'~categoria.id)}}{% else %}{{url('admin/categorias/cadastrar')}}{% endif %}" method="post">
+            <div class="mb-3">
+                <label for="nome_categoria" class="form-label">Nome:</label>
+                <input type="text" name="nome_categoria" id="nome_categoria" value="{{categoria.nome_categoria}}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="descricao_categoria" class="form-label">Descrição:</label>
+                <textarea name="descricao_categoria" id="descricao_categoria" class="form-control" rows="3">{{categoria.descricao_categoria}}</textarea>
+            </div>
+            <div class="mb-3">
+                <select class="form-select" name="status">
+                    <option value="1" {% if categoria.status == '1' %}selected{% endif %}>Ativo</option>
+                    <option value="0" {% if categoria.status == '0' %}selected{% endif %}>Inativo</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{% else %}Cadastrar{% endif %}">
+        </form>
+    </div>    
+</div>
+{% endblock %}

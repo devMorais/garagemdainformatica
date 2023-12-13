@@ -1,29 +1,36 @@
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <!--        <li class="nav-heading">Admnistra</li>-->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{url('admin/categorias/listar')}}">
-                <i class="bi bi-folder"></i>
-                <span>Categorias</span>
-            </a>
-        </li><!-- End F.A.Q Page Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{url('admin/produtos/listar')}}">
+<input type="checkbox" id="menu">
+<div class="sidebar">
+    <div class="sidebarLogo">
+        <a href="{{url('admin/dashboard')}}" data-bs-toggle="tooltip" title="Página Inicial">
+            <div class="logo">               
+                <img src="{{url('templates/admin/assets/img/php-logo.svg')}}" alt="{{constant('SITE_NOME')}}"/>
+            </div>
+        </a>
+    </div>
+    <div class="sidebarMenu">
+        <ul>
+            <li class="sidebarTitulo">
+               {{constant('SITE_DESCRICAO')}}
+            </li>
+            <li>
+                <a href="{{url('admin/servicos/listar')}}" tooltip="tooltip" title="Administração de Serviços">
+                    <i class="fa-solid fa-tools"></i>
+                    <span>Serviços</span>
+                </a>
+            </li>  
+            <li>
+                <a href="{{url('admin/categorias/listar')}}" tooltip="tooltip" title="Administração de Categorias">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Categorias</span>
+                </a>
+            </li> 
+            <li>
+                <a href="#" tooltip="tooltip" title="Administração de Usuários">
+                    <i class="fas fa-users"></i> 
+                    <span>Usuários</span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-                <i class="bi bi-box"></i>               
-                <span>Produtos</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{{url('admin/usuarios/listar')}}">
-                <i class="bi bi-people"></i>
-
-                <span>Usuários</span>
-            </a>
-        </li><!-- End Contact Page Nav -->
-    </ul>
-
-
-</aside><!-- End Sidebar-->
+</div>

@@ -16,6 +16,15 @@ try {
     //ROTAS DO PAINEL ADMINISTRATIVO
     SimpleRouter::group(['namespace' => 'Admin'], function () {
         SimpleRouter::get(URL_ADMIN . 'dashboard', 'AdminDashboard@dashboard');
+
+        //ADMIN SERVICOS
+        SimpleRouter::get(URL_ADMIN . 'servicos/listar', 'AdminServicos@listar');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'servicos/cadastrar', 'AdminServicos@cadastrar');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'servicos/editar/{id}', 'AdminServicos@editar');
+        //ADMIN CATEGORIAS
+        SimpleRouter::get(URL_ADMIN . 'categorias/listar', 'AdminCategorias@listar');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'categorias/cadastrar', 'AdminCategorias@cadastrar');
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'categorias/editar/{id}', 'AdminCategorias@editar');
     });
 
     SimpleRouter::start();
