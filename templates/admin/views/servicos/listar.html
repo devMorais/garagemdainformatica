@@ -14,7 +14,12 @@
     </ol>
 </nav>
 <div class="card border-0 shadow-sm">
-    <div class="card-header bg-white border-0">
+    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+        <div>
+            <span class="badge rounded text-bg-secondary">{{total.servicos}} serviços</span> 
+            <span class="badge rounded text-bg-success">{{total.servicosAtivo}} ativo</span> 
+            <span class="badge rounded text-bg-danger">{{total.servicosInativo}} inativo</span> 
+        </div>
         <a href="{{url('admin/servicos/cadastrar')}}" class="btn btn-dark">Cadastrar</a>
     </div>
     <div class="card-body">

@@ -12,7 +12,9 @@ body {
     height: 100%;
     z-index: 100;
     transition: left 300ms;
-    background: var(--cor4);
+    background: linear-gradient(to bottom, #333, #000);
+    color: #fff;
+    transition: background 300ms, color 300ms;
     overflow-y: auto;
 }
 
@@ -42,7 +44,7 @@ body {
     color: #fff !important;
 }
 .logo {
-    max-width: 100px;
+    max-width: 150px;
     margin: auto !important
 }
 .sidebarTitulo {

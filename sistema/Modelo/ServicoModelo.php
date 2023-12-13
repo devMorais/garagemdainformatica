@@ -12,9 +12,11 @@ use sistema\Nucleo\Conexao;
 class ServicoModelo
 {
 
-    public function busca(): array
+    public function busca(?string $termo = null): array
     {
-        $query = "SELECT * FROM servicos ORDER BY id DESC";
+        $termo = ($termo ? "WHERE {$termo}" : '');
+
+        $query = "SELECT * FROM servicos {$termo} ";
         $stmt = Conexao::getInstancia()->query($query);
         $resultado = $stmt->fetchAll();
         return $resultado;
@@ -56,5 +58,15 @@ class ServicoModelo
         $query = "DELETE FROM servicos WHERE id = {$id} ";
         $stmt = Conexao::getInstancia()->prepare($query);
         $stmt->execute();
+    }
+
+    public function total(?string $termo = null): int
+    {
+        $termo = ($termo ? "WHERE {$termo}" : '');
+
+        $query = "SELECT * FROM servicos {$termo}";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 }

@@ -16,8 +16,15 @@ class AdminServicos extends AdminControlador
 
     public function listar(): void
     {
+        $servico = new ServicoModelo();
+
         echo $this->template->renderizar('servicos/listar.html', [
-            'servicos' => (new ServicoModelo())->busca()
+            'servicos' => $servico->busca(),
+            'total' => [
+                'servicos' => $servico->total(),
+                'servicosAtivo' => $servico->total('status = 1'),
+                'servicosInativo' => $servico->total('status = 0')
+            ]
         ]);
     }
 
