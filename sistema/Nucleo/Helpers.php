@@ -9,7 +9,7 @@ use sistema\Nucleo\Sessao;
  * Classe Helper - Classe auxiliar responsável por prover métodos estáticos para manipular e validar dados no sistema.
  *
  * @author Fernando Aguiar
- * @copyright 2022 UnSet
+ * @copyright 2022 Garagem da informática
  */
 class Helpers
 {

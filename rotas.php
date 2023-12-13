@@ -4,8 +4,10 @@ use Pecee\SimpleRouter\SimpleRouter;
 use sistema\Nucleo\Helpers;
 
 try {
+    //DEFINIÇÃO DO NAMESPACE
     SimpleRouter::setDefaultNamespace('sistema\Controlador');
 
+    //ROTAS DO SITE FRONT-END
     SimpleRouter::get(URL_SITE, 'SiteControlador@index');
     SimpleRouter::get(URL_SITE . 'sobre-nos', 'SiteControlador@sobre');
     SimpleRouter::get(URL_SITE . 'servico/{id}', 'SiteControlador@servico');
@@ -13,8 +15,9 @@ try {
     SimpleRouter::post(URL_SITE . 'buscar', 'SiteControlador@buscar');
     SimpleRouter::get(URL_SITE . '404', 'SiteControlador@erro404');
 
-    //ROTAS DO PAINEL ADMINISTRATIVO
+    //GRUPO DE ROTAS DO PAINEL ADMINISTRATIVO
     SimpleRouter::group(['namespace' => 'Admin'], function () {
+        //ROTA PARA O DASHBOARD
         SimpleRouter::get(URL_ADMIN . 'dashboard', 'AdminDashboard@dashboard');
 
         //ADMIN SERVICOS

@@ -80,6 +80,11 @@ class Sessao
         return $this;
     }
 
+    /**
+     * Método mágico __get, responsável pelo o acesso a atributos privados ou inacessíveis
+     * @param type $atributo
+     * @return type
+     */
     public function __get($atributo)
     {
         if (!empty($_SESSION[$atributo])) {
@@ -87,6 +92,10 @@ class Sessao
         }
     }
 
+    /**
+     * Método responsável para exibir as mensagens do sistema de forma estática
+     * @return Mensagem|null
+     */
     public function flash(): ?Mensagem
     {
         if ($this->checar('flash')) {
