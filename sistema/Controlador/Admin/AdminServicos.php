@@ -38,12 +38,18 @@ class AdminServicos extends AdminControlador
         $servico = (new ServicoModelo())->buscaPorId($id);
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)) {
-
+            (new ServicoModelo())->atualizar($dados, $id);
             Helpers::redirecionar('admin/servicos/listar');
         }
         echo $this->template->renderizar('servicos/formulario.html', [
             'servico' => $servico,
             'categorias' => (new CategoriaModelo())->busca()
         ]);
+    }
+
+    public function deletar(int $id): void
+    {
+        (new ServicoModelo())->deletar($id);
+        Helpers::redirecionar('admin/servicos/listar');
     }
 }

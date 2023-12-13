@@ -38,8 +38,22 @@ class CategoriaModelo
 
     public function armazenar(array $dados): void
     {
-        $query = "INSERT INTO `categorias` (`nome_categoria`, `descricao_categoria`, `status`) VALUES (?, ?, ?);";
+        $query = "INSERT INTO `categorias` (`nome_categoria`, `descricao_categoria`, `status`) VALUES (?, ?, ?)";
         $stmt = Conexao::getInstancia()->prepare($query);
         $stmt->execute([$dados['nome_categoria'], $dados['descricao_categoria'], $dados['status']]);
+    }
+
+    public function atualizar(array $dados, int $id): void
+    {
+        $query = "UPDATE categorias SET nome_categoria = ?, descricao_categoria = ?, status = ? WHERE id = {$id}";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute([$dados['nome_categoria'], $dados['descricao_categoria'], $dados['status']]);
+    }
+
+    public function deletar(int $id): void
+    {
+        $query = "DELETE FROM categorias WHERE id = {$id} ";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute();
     }
 }

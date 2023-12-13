@@ -39,8 +39,22 @@ class ServicoModelo
 
     public function armazenar(array $dados): void
     {
-        $query = "INSERT INTO servicos (categoria_id ,nome_servico, descricao_servico, status) VALUES (:categoria_id, :nome_servico, :descricao_servico, :status);";
+        $query = "INSERT INTO servicos (categoria_id ,nome_servico, descricao_servico, status) VALUES (:categoria_id, :nome_servico, :descricao_servico, :status)";
         $stmt = Conexao::getInstancia()->prepare($query);
         $stmt->execute($dados);
+    }
+
+    public function atualizar(array $dados, int $id): void
+    {
+        $query = "UPDATE servicos SET categoria_id = :categoria_id, nome_servico = :nome_servico, descricao_servico = :descricao_servico, status = :status WHERE id = {$id}";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute($dados);
+    }
+
+    public function deletar(int $id): void
+    {
+        $query = "DELETE FROM servicos WHERE id = {$id} ";
+        $stmt = Conexao::getInstancia()->prepare($query);
+        $stmt->execute();
     }
 }

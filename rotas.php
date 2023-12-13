@@ -21,10 +21,13 @@ try {
         SimpleRouter::get(URL_ADMIN . 'servicos/listar', 'AdminServicos@listar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'servicos/cadastrar', 'AdminServicos@cadastrar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'servicos/editar/{id}', 'AdminServicos@editar');
+        SimpleRouter::get(URL_ADMIN . 'servicos/deletar/{id}', 'AdminServicos@deletar');
+
         //ADMIN CATEGORIAS
         SimpleRouter::get(URL_ADMIN . 'categorias/listar', 'AdminCategorias@listar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'categorias/cadastrar', 'AdminCategorias@cadastrar');
         SimpleRouter::match(['get', 'post'], URL_ADMIN . 'categorias/editar/{id}', 'AdminCategorias@editar');
+        SimpleRouter::get(URL_ADMIN . 'categorias/deletar/{id}', 'AdminCategorias@deletar');
     });
 
     SimpleRouter::start();
