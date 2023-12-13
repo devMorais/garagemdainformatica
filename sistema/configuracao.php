@@ -19,4 +19,5 @@ define('URL_PRODUCAO', 'https://garagemdainformatica.com.br');
 define('URL_DESENVOLVIMENTO', 'http://localhost/loja');
 
 define('URL_SITE', 'loja/');
+define('URL_ADMIN', 'loja/admin/');
 
