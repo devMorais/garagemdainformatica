@@ -7,17 +7,36 @@ use sistema\Modelo\ServicoModelo;
 use sistema\Modelo\CategoriaModelo;
 use sistema\Nucleo\Helpers;
 
+/**
+ * Classe SiteControlador
+ *
+ * Controlador responsável por gerenciar as ações do site, como exibição de páginas,
+ * busca de serviços, exibição de detalhes de serviço, exibição de categorias, entre outros.
+ * Utiliza modelos como ServicoModelo e CategoriaModelo para interação com o banco de dados.
+ *
+ * @package sistema\Controlador
+ */
 class SiteControlador extends Controlador
 {
 
+    /**
+     * Construtor da classe SiteControlador.
+     *
+     * Inicializa o controlador com o diretório de templates específico para as views do site.
+     */
     public function __construct()
     {
         parent::__construct('templates/site/views');
     }
 
+    /**
+     * Exibe a página inicial do site com lista de serviços e categorias.
+     *
+     * @return void
+     */
     public function index(): void
     {
-        $servicos = (new ServicoModelo())->busca();
+        $servicos = (new ServicoModelo())->busca(null, 'rand()');
         echo $this->template->renderizar('index.html', [
             'servicos' => $servicos,
             'categorias' => $this->categorias()
@@ -25,7 +44,8 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * Busca posts 
+     * Realiza a busca de serviços com base no termo fornecido.
+     *
      * @return void
      */
     public function buscar(): void
@@ -46,6 +66,12 @@ class SiteControlador extends Controlador
         }
     }
 
+    /**
+     * Exibe os detalhes de um serviço específico.
+     *
+     * @param int $id O ID do serviço.
+     * @return void
+     */
     public function servico(int $id): void
     {
         $servico = (new ServicoModelo())->buscaPorId($id);
@@ -58,11 +84,22 @@ class SiteControlador extends Controlador
         ]);
     }
 
+    /**
+     * Obtém a lista de categorias.
+     *
+     * @return array A lista de categorias.
+     */
     public function categorias()
     {
         return (new CategoriaModelo())->busca();
     }
 
+    /**
+     * Exibe os serviços associados a uma categoria específica.
+     *
+     * @param int $id O ID da categoria.
+     * @return void
+     */
     public function categoria(int $id): void
     {
         $servicos = (new CategoriaModelo())->servicos($id);
@@ -72,6 +109,11 @@ class SiteControlador extends Controlador
         ]);
     }
 
+    /**
+     * Exibe a página "Sobre Nós".
+     *
+     * @return void
+     */
     public function sobre(): void
     {
         echo $this->template->renderizar('sobre.html', [
@@ -80,6 +122,11 @@ class SiteControlador extends Controlador
         ]);
     }
 
+    /**
+     * Exibe a página de erro 404.
+     *
+     * @return void
+     */
     public function erro404(): void
     {
         echo $this->template->renderizar('404.html', [

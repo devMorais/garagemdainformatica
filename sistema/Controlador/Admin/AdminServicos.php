@@ -31,7 +31,7 @@ class AdminServicos extends AdminControlador
         $servico = new ServicoModelo();
 
         echo $this->template->renderizar('servicos/listar.html', [
-            'servicos' => $servico->busca(),
+            'servicos' => $servico->busca(null,'status ASC, id DESC'),
             'total' => [
                 'servicos' => $servico->total(),
                 'servicosAtivo' => $servico->total('status = 1'),
@@ -97,6 +97,7 @@ class AdminServicos extends AdminControlador
     public function deletar(int $id): void
     {
         (new ServicoModelo())->deletar($id);
+        $this->mensagem->sucesso('Deletado com sucesso.')->flash();
         Helpers::redirecionar('admin/servicos/listar');
     }
 }
