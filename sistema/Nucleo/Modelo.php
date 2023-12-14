@@ -167,7 +167,7 @@ abstract class Modelo
             //fetchObject - Busca a próxima linha e a retorna como um objeto
             return $stmt->fetchObject(static::class);
         } catch (\PDOException $ex) {
-            $this->erro = $ex;
+            $this->erro = $ex->getMessage();
             return null;
         }
     }

@@ -31,7 +31,7 @@ class AdminServicos extends AdminControlador
         $servico = new ServicoModelo();
 
         echo $this->template->renderizar('servicos/listar.html', [
-            'servicos' => $servico->busca(null,'status ASC, id DESC'),
+            'servicos' => $servico->busca()->ordem('status ASC, id DESC')->resultado(true),
             'total' => [
                 'servicos' => $servico->total(),
                 'servicosAtivo' => $servico->total('status = 1'),
@@ -52,9 +52,18 @@ class AdminServicos extends AdminControlador
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)) {
-            (new ServicoModelo())->armazenar($dados);
-            $this->mensagem->sucesso('Cadastrado com sucesso.')->flash();
-            Helpers::redirecionar('admin/servicos/listar');
+
+            $servico = New ServicoModelo();
+
+            $servico->nome_servico = $dados['nome_servico'];
+            $servico->categoria_id = $dados['categoria_id'];
+            $servico->descricao_servico = $dados['descricao_servico'];
+            $servico->status = $dados['status'];
+
+            if ($servico->salvar()) {
+                $this->mensagem->sucesso('Cadastrado com sucesso.')->flash();
+                Helpers::redirecionar('admin/servicos/listar');
+            }
         }
         echo $this->template->renderizar('servicos/formulario.html', [
             'categorias' => (new CategoriaModelo())->busca()
@@ -75,9 +84,17 @@ class AdminServicos extends AdminControlador
         $servico = (new ServicoModelo())->buscaPorId($id);
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (isset($dados)) {
-            (new ServicoModelo())->atualizar($dados, $id);
-            $this->mensagem->sucesso('Editado com sucesso.')->flash();
-            Helpers::redirecionar('admin/servicos/listar');
+            $servico = (New ServicoModelo())->buscaPorId($id);
+
+            $servico->nome_servico = $dados['nome_servico'];
+            $servico->categoria_id = $dados['categoria_id'];
+            $servico->descricao_servico = $dados['descricao_servico'];
+            $servico->status = $dados['status'];
+
+            if ($servico->salvar()) {
+                $this->mensagem->sucesso('Editado com sucesso.')->flash();
+                Helpers::redirecionar('admin/servicos/listar');
+            }
         }
         echo $this->template->renderizar('servicos/formulario.html', [
             'servico' => $servico,
