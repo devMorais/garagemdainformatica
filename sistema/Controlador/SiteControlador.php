@@ -36,9 +36,9 @@ class SiteControlador extends Controlador
      */
     public function index(): void
     {
-        $servicos = (new ServicoModelo())->busca(null, 'rand()');
+        $servicos = (new ServicoModelo())->busca("status = 1");
         echo $this->template->renderizar('index.html', [
-            'servicos' => $servicos,
+            'servicos' => $servicos->resultado(true),
             'categorias' => $this->categorias()
         ]);
     }
@@ -52,7 +52,7 @@ class SiteControlador extends Controlador
     {
         $busca = filter_input(INPUT_POST, 'busca', FILTER_DEFAULT);
         if (isset($busca)) {
-            $servicos = (new ServicoModelo())->pesquisa($busca);
+            $servicos = (new ServicoModelo())->busca("status = 1 AND nome_servico LIKE '%{$busca}%'")->resultado(true);
             if ($servicos) {
                 foreach ($servicos as $servico) {
                     echo "<div class='card mb-3'>

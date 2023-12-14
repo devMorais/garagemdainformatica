@@ -274,7 +274,7 @@ abstract class Modelo
      * @param string $termos
      * @return bool
      */
-    public function apagar(string $termos): bool
+    public function apagar(string $termos): ?bool
     {
         try {
             $query = "DELETE FROM " . $this->tabela . " WHERE {$termos}";

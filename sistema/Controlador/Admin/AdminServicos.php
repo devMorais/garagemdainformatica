@@ -113,8 +113,20 @@ class AdminServicos extends AdminControlador
      */
     public function deletar(int $id): void
     {
-        (new ServicoModelo())->deletar($id);
-        $this->mensagem->sucesso('Deletado com sucesso.')->flash();
-        Helpers::redirecionar('admin/servicos/listar');
+        if (is_int($id)) {
+            $servico = (new ServicoModelo())->buscaPorId($id);
+            if (!$servico) {
+                $this->mensagem->alerta('O serviço que você está tentando excluir não existe!')->flash();
+                Helpers::redirecionar('admin/servicos/listar');
+            } else {
+                if ($servico->apagar("id = {$id}")) {
+                    $this->mensagem->sucesso('Deletado com sucesso.')->flash();
+                    Helpers::redirecionar('admin/servicos/listar');
+                } else {
+                    $this->mensagem->erro($servico->erro())->flash();
+                    Helpers::redirecionar('admin/servicos/listar');
+                }
+            }
+        }
     }
 }
