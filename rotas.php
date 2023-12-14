@@ -17,6 +17,11 @@ try {
 
     //GRUPO DE ROTAS DO PAINEL ADMINISTRATIVO
     SimpleRouter::group(['namespace' => 'Admin'], function () {
+
+
+        //ROTA LOGIN ADMINISTRATIVO
+        SimpleRouter::match(['get', 'post'], URL_ADMIN . 'login', 'AdminLogin@login');
+
         //ROTA PARA O DASHBOARD
         SimpleRouter::get(URL_ADMIN . 'dashboard', 'AdminDashboard@dashboard');
 

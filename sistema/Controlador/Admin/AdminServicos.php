@@ -34,8 +34,8 @@ class AdminServicos extends AdminControlador
             'servicos' => $servico->busca()->ordem('status ASC, id DESC')->resultado(true),
             'total' => [
                 'servicos' => $servico->total(),
-                'servicosAtivo' => $servico->total('status = 1'),
-                'servicosInativo' => $servico->total('status = 0')
+                'servicosAtivo' => $servico->busca('status = 1')->total(),
+                'servicosInativo' => $servico->busca('status = 0')->total()
             ]
         ]);
     }
@@ -119,7 +119,7 @@ class AdminServicos extends AdminControlador
                 $this->mensagem->alerta('O serviço que você está tentando excluir não existe!')->flash();
                 Helpers::redirecionar('admin/servicos/listar');
             } else {
-                if ($servico->apagar("id = {$id}")) {
+                if ($servico->deletar()) {
                     $this->mensagem->sucesso('Deletado com sucesso.')->flash();
                     Helpers::redirecionar('admin/servicos/listar');
                 } else {

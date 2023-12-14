@@ -3,7 +3,9 @@
 body {
     font-family: "Inter", "Helvetica Neue", Arial;
 }
-
+.saudacao {
+    font-size: .7em
+}
 .sidebar {
     width: 300px;
     position: fixed;
@@ -12,9 +14,7 @@ body {
     height: 100%;
     z-index: 100;
     transition: left 300ms;
-    background: linear-gradient(to bottom, #333, #000);
-    color: #fff;
-    transition: background 300ms, color 300ms;
+    background: var(--cor3);
     overflow-y: auto;
 }
 
@@ -23,12 +23,12 @@ body {
 }
 
 .sidebar::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px var(--cor3);
+    box-shadow: inset 0 0 5px var(--cor2);
     border-radius: 10px;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-    background: var(--cor3);
+    background: var(--cor2);
     border-radius: 10px;
 }
 
@@ -44,7 +44,7 @@ body {
     color: #fff !important;
 }
 .logo {
-    max-width: 150px;
+    max-width: 100px;
     margin: auto !important
 }
 .sidebarTitulo {
@@ -70,7 +70,7 @@ body {
     padding: .2rem;
     display: block;
     color: var(--cor14);
-    border-bottom: 1px solid var(--cor3);
+    border-bottom: 1px solid var(--cor2);
 }
 
 .sidebarMenu a:hover {
@@ -180,6 +180,32 @@ main {
 
 .copyright {
     font-size: .8em;
+}
+
+.capa {
+    max-width: 80px
+}
+
+.pagination a{
+    color: black;
+    background: #eee
+}
+.active>.page-link {
+    background: black;
+    border-color: black
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  vertical-align: middle;
+}
+table.dataTable tbody td img {
+  display: block;
+}
+
+.thumb {
+    max-width: 80px !important;
+    border: 1px solid #999
 }
 
 @media screen and (max-width: 1200px) {
