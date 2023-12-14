@@ -2,12 +2,13 @@
 
 namespace sistema\Modelo;
 
+use sistema\Nucleo\Conexao;
 use sistema\Nucleo\Modelo;
 
 /**
- * Description of ServicoModelo
+ * Classe ServicoModelo
  *
- * @author Hugo - CSGO
+ * @author Fernando Aguiar
  */
 class ServicoModelo extends Modelo
 {

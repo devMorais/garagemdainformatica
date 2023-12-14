@@ -3,7 +3,7 @@
         'name' => 'ceogarageminformatica/php',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd2802363670ac83bcc7cf203466ff9b3e4982cff',
+        'reference' => 'a39002fcde7f943f891159edd7e23a12c039fa3e',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ceogarageminformatica/php' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd2802363670ac83bcc7cf203466ff9b3e4982cff',
+            'reference' => 'a39002fcde7f943f891159edd7e23a12c039fa3e',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -22,11 +22,22 @@
         'pecee/simple-router' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'fdbd72c30d689ef1d9d2124eaf0ac2b1fb628c81',
+            'reference' => 'b98d40b84b6e862bf250b179c0229efb7344a7bb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../pecee/simple-router',
             'aliases' => array(
                 0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'symfony/deprecation-contracts' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '7c3aff79d10325257a001fcf92d991f24fc967cf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
+            'aliases' => array(
+                0 => '3.4.x-dev',
             ),
             'dev_requirement' => false,
         ),
@@ -60,7 +71,7 @@
         'twig/twig' => array(
             'pretty_version' => '3.x-dev',
             'version' => '3.9999999.9999999.9999999-dev',
-            'reference' => 'aeeec9a5e907a79e50a6bb78979154599401726e',
+            'reference' => 'd2f493f67ce2f52e334ab846bf3ec86408ec0638',
             'type' => 'library',
             'install_path' => __DIR__ . '/../twig/twig',
             'aliases' => array(),

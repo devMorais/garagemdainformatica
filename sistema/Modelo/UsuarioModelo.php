@@ -4,12 +4,11 @@ namespace sistema\Modelo;
 
 use sistema\Nucleo\Modelo;
 use sistema\Nucleo\Sessao;
-use sistema\Nucleo\Helpers;
 
 /**
  * Classe UsuarioModelo
  *
- * @author Fernando Aguiar
+ * @author Ronaldo Aires
  */
 class UsuarioModelo extends Modelo
 {
@@ -30,24 +29,13 @@ class UsuarioModelo extends Modelo
         return $busca->resultado();
     }
 
-//    /**
-//     * Busca usuário por token
-//     * @param string $token
-//     * @return UsuarioModelo|null
-//     */
-//    public function buscaPorToken(string $token): ?UsuarioModelo
-//    {
-//        $busca = $this->busca("token = :t", "t={$token}");
-//        return $busca->resultado();
-//    }
-
     /**
      * Valida o login do usuário
      * @param array $dados
      * @param int $level
      * @return boolean
      */
-    public function login(array $dados, int $level = 1): bool
+    public function login(array $dados, int $level = 1)
     {
         $usuario = (new UsuarioModelo())->buscaPorEmail($dados['email']);
 
@@ -57,16 +45,9 @@ class UsuarioModelo extends Modelo
         }
 
         if ($dados['senha'] != $usuario->senha) {
-            $this->mensagem->erro("Os dados informados para o login estão incorretos!")->flash();
+            $this->mensagem->alerta("Os dados informados para o login estão incorretos!")->flash();
             return false;
         }
-//
-//
-//
-//        if (!Helpers::verificarSenha($dados['senha'], $usuario->senha)) {
-//            $this->mensagem->alerta("Os dados informados para o login estão incorretos!")->flash();
-//            return false;
-//        }
 
         if ($usuario->status != 1) {
             $this->mensagem->alerta("Para fazer login, primeiro ative sua conta!")->flash();
@@ -89,15 +70,15 @@ class UsuarioModelo extends Modelo
         return true;
     }
 
-//    public function salvar(): bool
-//    {
-//        if ($this->busca("email = :e AND id != :id", "e={$this->email}&id={$this->id}")->resultado()) {
-//            $this->mensagem->alerta("O e-mail " . $this->dados->email . " já está cadastrado");
-//            return false;
-//        }
-//
-//        parent::salvar();
-//
-//        return true;
-//    }
+    public function salvar(): bool
+    {
+        if ($this->busca("email = :e AND id != :id", "e={$this->email}&id={$this->id}")->resultado()) {
+            $this->mensagem->alerta("O E-mail " . $this->dados->email . " já está cadastrado");
+            return false;
+        }
+
+        parent::salvar();
+
+        return true;
+    }
 }

@@ -5,35 +5,23 @@ namespace sistema\Nucleo;
 use sistema\Suporte\Template;
 
 /**
- * Classe Controlador
+ * Classe Controlador, responsável por instanciar templates e mensagens para uso global
  *
- * Esta classe serve como uma base para outros controladores no sistema. Ela fornece instâncias
- * dos objetos Template e Mensagem, que podem ser utilizados pelos controladores filhos para
- * renderização de views e manipulação de mensagens.
- *
- * @package sistema\Controlador
+ * @author Ronaldo Aires
  */
 class Controlador
 {
-
-    /**
-     * @var Template $template Instância do objeto Template para renderização de views.
-     */
     protected Template $template;
-
-    /**
-     * @var Mensagem $mensagem Instância do objeto Mensagem para manipulação de mensagens.
-     */
     protected Mensagem $mensagem;
 
     /**
-     * Construtor da classe Controlador.
-     *
-     * @param string $diretorio O diretório onde os templates estão localizados.
+     * Construtor responsável por definir o diretório pai das views e criar a instancia do engine template e mensagens.
+     * @param string $diretorio
      */
     public function __construct(string $diretorio)
     {
         $this->template = new Template($diretorio);
+        
         $this->mensagem = new Mensagem();
     }
 }

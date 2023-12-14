@@ -13,25 +13,43 @@
         </li>
     </ol>
 </nav>
+
 <div class="card border-0 shadow-sm">
     <div class="card-body">
-        <form action="{% if categoria.id %}{{url('admin/categorias/editar/'~categoria.id)}}{% else %}{{url('admin/categorias/cadastrar')}}{% endif %}" method="post">
+        <form action="{% if categoria.id %}{{url('admin/categorias/editar/'~categoria.id)}}{%else%}{{url('admin/categorias/cadastrar')}}{%endif%}" method="post">
+
             <div class="mb-3">
-                <label for="nome_categoria" class="form-label">Nome:</label>
+                <label for="nome_categoria" class="form-label">
+                    <i class="bi bi-box h5 text-primary"></i> Título
+                </label>
                 <input type="text" name="nome_categoria" id="nome_categoria" value="{{categoria.nome_categoria}}" class="form-control">
             </div>
+
             <div class="mb-3">
-                <label for="descricao_categoria" class="form-label">Descrição:</label>
+                <label for="descricao_categoria" class="form-label">
+                    <i class="bi bi-file-earmark-text h5 text-success"></i> Texto
+                </label>
                 <textarea name="descricao_categoria" id="descricao_categoria" class="form-control" rows="3">{{categoria.descricao_categoria}}</textarea>
             </div>
+
             <div class="mb-3">
+                <label for="status" class="form-label">
+                    <i class="bi bi-toggle-on h5 text-warning"></i> Status
+                </label>
                 <select class="form-select" name="status">
-                    <option value="1" {% if categoria.status == '1' %}selected{% endif %}>Ativo</option>
-                    <option value="0" {% if categoria.status == '0' %}selected{% endif %}>Inativo</option>
+                    <option value="1" {% if categoria.status == '1' %}selected{%endif%}>
+                    <i class="bi bi-check-circle-fill text-success"></i> Ativo
+                    </option>
+                    <option value="0" {% if categoria.status == '0' %}selected{%endif%}>
+                    <i class="bi bi-x-circle-fill text-danger"></i> Inativo
+                    </option>
                 </select>
             </div>
-            <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{% else %}Cadastrar{% endif %}">
+
+            <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{%else%}Cadastrar{%endif%}">
         </form>
     </div>    
 </div>
+</div>
+
 {% endblock %}

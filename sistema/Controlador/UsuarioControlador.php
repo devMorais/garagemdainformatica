@@ -3,10 +3,9 @@
 namespace sistema\Controlador;
 
 use sistema\Nucleo\Controlador;
+use sistema\Nucleo\Helpers;
 use sistema\Nucleo\Sessao;
 use sistema\Modelo\UsuarioModelo;
-
-//use sistema\Nucleo\Helpers;
 
 class UsuarioControlador extends Controlador
 {
@@ -16,13 +15,18 @@ class UsuarioControlador extends Controlador
         parent::__construct('templates/site/views');
     }
 
+    /**
+     * Busca usuário pela sessão
+     * @return UsuarioModelo|null
+     */
     public static function usuario(): ?UsuarioModelo
     {
         $sessao = new Sessao();
-        if (!$sessao->checar('usuarioId')) {
+        if(!$sessao->checar('usuarioId')){
             return null;
         }
-
+        
         return (new UsuarioModelo())->buscaPorId($sessao->usuarioId);
     }
+
 }

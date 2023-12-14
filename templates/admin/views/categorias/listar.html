@@ -1,50 +1,56 @@
 {% extends "dashboard.html" %}
 
 {% block conteudo %}
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
+<nav aria-label="breadcrumb" class="bg-light p-3 rounded">
+    <ol class="breadcrumb m-0 p-0">
         <li class="breadcrumb-item">
-            <a href="{{url('admin/dashboard')}}">
-                Home
+            <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark">
+                <i class="bi bi-house-door h4 text-primary me-2"></i> Painel de Controle
             </a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
-            Categorias
+            <i class="bi bi-grid-3x3-gap h4 text-success me-2"></i> Categorias
         </li>
     </ol>
 </nav>
 {{ flash() }}
 <div class="card border-0 shadow-sm">
-    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+    <div class="card-header bg-light border-0 d-flex justify-content-between align-items-center">
         <div>
-            <span class="badge rounded text-bg-secondary">
-                <i class="fas fa-folder"></i> {{total.categorias}} categorias
+            <span class="badge rounded-pill text-dark bg-light">
+                <i class="bi bi-folder h4"></i> {{total.categorias}} categorias
             </span>
-            <span class="badge rounded text-bg-success">
-                <i class="fas fa-check-circle"></i> {{total.categoriasAtiva}} ativa
+
+            <span class="badge rounded-pill text-success bg-light ms-2">
+                <i class="bi bi-check-circle h4 text-success"></i> {{total.categoriasAtiva}} ativa
             </span>
-            <span class="badge rounded text-bg-danger">
-                <i class="fas fa-times-circle"></i> {{total.categoriasInativa}} inativa
+
+            <span class="badge rounded-pill text-danger bg-light ms-2">
+                <i class="bi bi-x-circle h4 text-danger"></i> {{total.categoriasInativa}} inativa
             </span>
         </div>
-        <a href="{{url('admin/categorias/cadastrar')}}" class="btn btn-dark">Cadastrar&nbsp;<i class="fas fa-plus-circle"></i></a>
+
+        <a href="{{url('admin/categorias/cadastrar')}}" class="btn btn-dark">
+            Cadastrar&nbsp;<i class="bi bi-plus-circle h4"></i>
+        </a>
     </div>
+
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-light">
                     <tr>
-                        <th><i class="fas fa-hashtag"></i></th>
-                        <th>Nome</th>
-                        <th class="text-center">Status <i class="fas fa-toggle-on"></i></th>
-                        <th class="text-center">Ação  <i class="fas fa-arrow-right"></i></th>
+                        <th class="text-center"><i class="bi bi-key h5 text-primary"></i></th>
+                        <th class="text-center"><i class="bi bi-folder h5 text-success"></i> Nome</th>
+                        <th class="text-center"><i class="bi bi-toggle-on h5 text-warning"></i> Status</th>
+                        <th class="text-center"><i class="bi bi-arrow-right h5 text-info"></i> Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for categoria in categorias %}
                     <tr>
-                        <th>{{categoria.id}}</th>
-                        <td>{{categoria.nome_categoria}}</td>
+                        <td class="text-center">{{ categoria.id }}</td>
+                        <td class="text-center">{{ categoria.nome_categoria }}</td>
                         <td class="text-center">
                             {% if categoria.status == 1 %}
                             <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
@@ -57,7 +63,7 @@
                             <a href="{{ url('admin/categorias/deletar/' ~ categoria.id) }}" tooltip="tooltip" title="Deletar" data-confirm="Você realmente quer deletar?"><i class="fas fa-trash-alt"></i></a>                          
                         </td>
                     </tr>
-                    {%endfor%}
+                    {% endfor %}
                 </tbody>
             </table>
         </div>     

@@ -3,30 +3,27 @@
 namespace sistema\Nucleo;
 
 /**
- * Classe para gerenciar sessões de usuário.
+ * Classe Sessao
  *
- * @author Fernando
+ * @author Ronaldo Aires
  */
 class Sessao
 {
 
-    /**
-     * Inicializa a sessão se ainda não estiver iniciada.
-     */
     public function __construct()
     {
+        //checa se não existe um ID de sessão
         if (!session_id()) {
+            //inicia uma nova sessão ou resume uma sessão existente
             session_start();
         }
     }
 
     /**
-     * Cria ou atualiza uma variável de sessão.
-     *
-     * @param string $chave A chave da variável de sessão.
-     * @param mixed $valor O valor a ser armazenado na variável de sessão.
-     *
-     * @return Sessao O próprio objeto Sessao para permitir encadeamento de métodos.
+     * Cria uma sessão
+     * @param string $chave
+     * @param mixed $valor
+     * @return Sessao
      */
     public function criar(string $chave, mixed $valor): Sessao
     {
@@ -35,9 +32,8 @@ class Sessao
     }
 
     /**
-     * Carrega todas as variáveis de sessão como um objeto.
-     *
-     * @return object|null Um objeto contendo todas as variáveis de sessão ou NULL se não houver sessão iniciada.
+     * Carrega uma sessão
+     * @return object|null
      */
     public function carregar(): ?object
     {
@@ -45,11 +41,9 @@ class Sessao
     }
 
     /**
-     * Verifica se uma variável de sessão com a chave fornecida existe.
-     *
-     * @param string $chave A chave da variável de sessão a ser verificada.
-     *
-     * @return bool True se a variável de sessão existir, false caso contrário.
+     * Checa se uma sessão existe
+     * @param string $chave
+     * @return bool
      */
     public function checar(string $chave): bool
     {
@@ -57,11 +51,9 @@ class Sessao
     }
 
     /**
-     * Remove uma variável de sessão com a chave fornecida.
-     *
-     * @param string $chave A chave da variável de sessão a ser removida.
-     *
-     * @return Sessao O próprio objeto Sessao para permitir encadeamento de métodos.
+     * Limpa a sessão especificada
+     * @param string $chave
+     * @return Sessao
      */
     public function limpar(string $chave): Sessao
     {
@@ -70,9 +62,8 @@ class Sessao
     }
 
     /**
-     * Destrói a sessão atual.
-     *
-     * @return Sessao O próprio objeto Sessao para permitir encadeamento de métodos.
+     * Destrói todos os dados registrados em uma sessão
+     * @return Sessao
      */
     public function deletar(): Sessao
     {
@@ -81,7 +72,7 @@ class Sessao
     }
 
     /**
-     * Método mágico __get, responsável pelo o acesso a atributos privados ou inacessíveis
+     * __get() é utilizado para ler dados de atributos inacessíveis.
      * @param type $atributo
      * @return type
      */
@@ -93,7 +84,7 @@ class Sessao
     }
 
     /**
-     * Método responsável para exibir as mensagens do sistema de forma estática
+     * Checa ou limpa mensagens flash
      * @return Mensagem|null
      */
     public function flash(): ?Mensagem
@@ -105,4 +96,5 @@ class Sessao
         }
         return null;
     }
+
 }

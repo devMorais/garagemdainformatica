@@ -7,12 +7,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/skipperbent/simple-php-router.git",
-                "reference": "fdbd72c30d689ef1d9d2124eaf0ac2b1fb628c81"
+                "reference": "b98d40b84b6e862bf250b179c0229efb7344a7bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/fdbd72c30d689ef1d9d2124eaf0ac2b1fb628c81",
-                "reference": "fdbd72c30d689ef1d9d2124eaf0ac2b1fb628c81",
+                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/b98d40b84b6e862bf250b179c0229efb7344a7bb",
+                "reference": "b98d40b84b6e862bf250b179c0229efb7344a7bb",
                 "shasum": ""
             },
             "require": {
@@ -27,7 +27,7 @@
                 "phpstan/phpstan-strict-rules": "^1",
                 "phpunit/phpunit": "^8"
             },
-            "time": "2023-11-27T07:05:15+00:00",
+            "time": "2023-12-11T21:52:06+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
@@ -66,6 +66,77 @@
                 "source": "https://github.com/skipperbent/simple-php-router/issues"
             },
             "install-path": "../pecee/simple-router"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/7c3aff79d10325257a001fcf92d991f24fc967cf",
+                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "time": "2023-05-23T14:45:45+00:00",
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.4-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../symfony/deprecation-contracts"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -334,16 +405,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "aeeec9a5e907a79e50a6bb78979154599401726e"
+                "reference": "d2f493f67ce2f52e334ab846bf3ec86408ec0638"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/aeeec9a5e907a79e50a6bb78979154599401726e",
-                "reference": "aeeec9a5e907a79e50a6bb78979154599401726e",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d2f493f67ce2f52e334ab846bf3ec86408ec0638",
+                "reference": "d2f493f67ce2f52e334ab846bf3ec86408ec0638",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8",
                 "symfony/polyfill-mbstring": "^1.3",
                 "symfony/polyfill-php80": "^1.22"
@@ -352,11 +424,17 @@
                 "psr/container": "^1.0|^2.0",
                 "symfony/phpunit-bridge": "^5.4.9|^6.3|^7.0"
             },
-            "time": "2023-11-21T18:55:42+00:00",
+            "time": "2023-12-14T07:17:08+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
             "autoload": {
+                "files": [
+                    "src/Resources/core.php",
+                    "src/Resources/debug.php",
+                    "src/Resources/escaper.php",
+                    "src/Resources/string_loader.php"
+                ],
                 "psr-4": {
                     "Twig\\": "src/"
                 }

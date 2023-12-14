@@ -10,10 +10,7 @@ use sistema\Nucleo\Sessao;
 /**
  * Classe AdminControlador
  *
- * Controlador base para a área administrativa do sistema. Estende a classe Controlador do Núcleo
- * e define o diretório de templates específico para as views administrativas.
- *
- * @package sistema\Controlador\Admin
+ * @author Fernando
  */
 class AdminControlador extends Controlador
 {
@@ -28,8 +25,10 @@ class AdminControlador extends Controlador
 
         if (!$this->usuario OR $this->usuario->level != 3) {
             $this->mensagem->erro('Faça login para acessar o painel de controle!')->flash();
+
             $sessao = new Sessao();
             $sessao->limpar('usuarioId');
+
             Helpers::redirecionar('admin/login');
         }
     }

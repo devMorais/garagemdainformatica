@@ -6,17 +6,84 @@
 <div class="conteudo">
     {% include 'topo.html' %}
     <main>
-        {% block conteudo %}
+        {% block conteudo %}          
 
-        <div class="card border-0 shadow-sm">
-            <div class="card-header bg-white border-0">
-                <h5 class="card-title">Dashboard</h5>
+        <h5 class="mb-3">Dashboard</h5>            
+
+        {{ flash() }}
+
+        <div class="row">
+            <div class="col-xl-6 col-xxl-5 d-flex">
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h6 class="fw-bold text-primary">Serviços</h6>
+                                        </div>
+
+                                        <div class="col-auto text-primary">
+                                            <a href="{{url('admin/servicos/cadastrar')}}" tooltip="tooltip" title="Cadastrar Serviço">
+                                                <i class="bi bi-plus-circle h3"></i>
+                                            </a>                                            
+                                        </div>
+                                    </div>
+                                    <h1 class="mt-1 mb-3">{{servicos.total}}</h1>
+
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{servicos.ativo}}</span> <span class="badge text-secondary">Ativo</span> </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{servicos.inativo}}</span> <span class="badge text-secondary">Inativo</span> </span>  
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>                                   
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col mt-0">
+                                            <h6 class="fw-bold text-warning">Usuários</h6>
+                                        </div>
+
+                                        <div class="col-auto text-warning">
+                                            <i class="bi bi-person h3"></i>
+                                        </div>
+                                    </div>
+                                    <h1 class="mt-1 mb-3">{{usuarios.total}}</h1>
+
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{usuarios.ativo}}</span> <span class="badge text-secondary">Ativo</span> </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{usuarios.inativo}}</span> <span class="badge text-secondary">Inativo</span> </span>  
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>                                   
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                {{flash()}}
-                Conteúdo em desenvolvimento
+
+            <div class="col-xl-6 col-xxl-7">
+                <div class="card flex-fill w-100">
+                    Em desenvolvimento
+                </div>
             </div>
+
         </div>
+
         {% endblock %}
     </main>
     {% include 'rodape.html' %}

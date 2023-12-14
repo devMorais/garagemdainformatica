@@ -1,0 +1,91 @@
+{% extends "dashboard.html" %}
+
+{% block conteudo %}  
+<nav aria-label="breadcrumb" class="bg-light p-3 rounded">
+    <ol class="breadcrumb m-0 p-0">
+        <li class="breadcrumb-item">
+            <a href="{{url('admin/dashboard')}}" class="text-decoration-none text-dark">
+                <i class="bi bi-house-door h4 text-primary me-2"></i> Painel de Controle
+            </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <i class="bi bi-person h4 text-success me-2"></i> Usuários
+        </li>
+    </ol>
+</nav>
+
+{{ flash() }}
+
+<div class="card border-0 shadow-sm">
+    <div class="card-header bg-light border-0 d-flex justify-content-between align-items-center">
+        <div>
+            <span class="badge rounded-pill text-dark bg-light">
+                <i class="bi bi-person h4"></i> <span class="text-success">{{total.usuarios}} usuários</span>
+                <span class="badge bg-success h5">{{total.usuariosAtivo}}</span>
+                <span class="badge bg-danger h5">{{total.usuariosInativo}}</span>
+            </span>
+
+            <span class="badge rounded-pill text-danger bg-light ms-2">
+                <i class="bi bi-person-fill h4"></i> <span class="text-success">{{total.admin}} administrador</span>
+                <span class="badge bg-success h5">{{total.adminAtivo}}</span>
+                <span class="badge bg-danger h5">{{total.adminInativo}}</span>
+            </span>
+        </div>
+
+        <a href="{{url('admin/usuarios/cadastrar')}}" class="btn btn-dark" data-toggle="tooltip" data-placement="top" title="Cadastrar Usuário">
+            <i class="bi bi-person-plus h4"></i> Cadastrar
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center"><i class="bi bi-key h5 text-primary"></i></th>
+                        <th class="text-center"><i class="bi bi-person h5 text-success"></i> Nome</th>
+                        <th class="text-center"><i class="bi bi-envelope h5 text-info"></i> E-mail</th>
+                        <th class="text-center"><i class="bi bi-graph-up h5 text-warning"></i> Level</th>
+                        <th class="text-center"><i class="bi bi-toggle-off h5 text-danger"></i> Status</th>
+                        <th class="text-center"><i class="bi bi-gear h5 text-dark"></i> Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td class="text-center">{{ usuario.id }}</td>
+                        <td class="text-center">
+                            <a href="{{ url('admin/usuarios/editar/'~usuario.id) }}" tooltip="tooltip" title="Editar">
+                                {{ usuario.nome }}
+                            </a>                            
+                        </td>
+                        <td class="text-center">{{ usuario.email }}</td>
+                        <td class="text-center">
+                            {% if usuario.level == 3 %}
+                            <div class="text-danger fw-bold">Admin</div>
+                            {% else %}
+                            <div class="text-secondary">Usuário</div>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if usuario.status == 1 %}
+                            <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
+                            {% else %}
+                            <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inativo"></i>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ url('admin/usuarios/editar/'~usuario.id) }}" data-toggle="tooltip" title="Editar">
+                                <i class="fas fa-edit m-1"></i>
+                            </a>
+                            <a href="{{ url('admin/usuarios/deletar/' ~ usuario.id)}}" tooltip="tooltip" title="Deletar" data-confirm="Você realmente quer deletar?">
+                                <i class="fas fa-trash-alt m-1"></i>
+                            </a>                          
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>     
+    </div>
+</div>
+{% endblock %}

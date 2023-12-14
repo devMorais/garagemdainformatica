@@ -8,7 +8,7 @@ use PDOException;
 /**
  * Classe Conexao - Padrão Singleton: Retorna uma instância única de uma classe.
  *
- * @author Fernando Aguiar da Costa Morais
+ * @author Ronaldo Aires
  */
 class Conexao
 {
@@ -31,7 +31,7 @@ class Conexao
                 ]);
             } catch (PDOException $ex) {
                 die("Erro de conexão:: " . $ex->getMessage());
-            }
+            }            
         }
         return self::$instancia;
     }
@@ -53,4 +53,5 @@ class Conexao
     {
         
     }
+
 }
