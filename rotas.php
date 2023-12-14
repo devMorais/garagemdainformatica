@@ -24,6 +24,7 @@ try {
 
         //ROTA PARA O DASHBOARD
         SimpleRouter::get(URL_ADMIN . 'dashboard', 'AdminDashboard@dashboard');
+        SimpleRouter::get(URL_ADMIN . 'sair', 'AdminDashboard@sair');
 
         //ADMIN SERVICOS
         SimpleRouter::get(URL_ADMIN . 'servicos/listar', 'AdminServicos@listar');

@@ -6,12 +6,14 @@
 <div class="conteudo">
     {% include 'topo.html' %}
     <main>
-        {% block conteudo %}  
+        {% block conteudo %}
+
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-white border-0">
                 <h5 class="card-title">Dashboard</h5>
             </div>
             <div class="card-body">
+                {{flash()}}
                 Conteúdo em desenvolvimento
             </div>
         </div>

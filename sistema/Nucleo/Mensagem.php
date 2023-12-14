@@ -40,7 +40,7 @@ class Mensagem
     public function erro(string $mensagem): Mensagem
     {
         $this->css = 'alert alert-danger alert-dismissible fade show';
-        $this->icone = 'fas fa-exclamation-octagon me-1';
+        $this->icone = 'bi-x-octagon me-1';
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
