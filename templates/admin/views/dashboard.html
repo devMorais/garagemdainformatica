@@ -1,84 +1,276 @@
 {% extends "base.html" %}
 {% block corpo %}
-
 {% include 'menu.html' %}
-
 <div class="conteudo">
     {% include 'topo.html' %}
     <main>
         {% block conteudo %}          
-
-        <h5 class="mb-3">Dashboard</h5>            
-
+        <h5 class="mb-3">Dashboard <small class="saudacao text-muted"> - Saudação, Admin. Seu último login foi em xx/xx/xxxx às 00:00</small></h5>
         {{ flash() }}
-
         <div class="row">
-            <div class="col-xl-6 col-xxl-5 d-flex">
+            <div class="col-xl-6 col-xxl-5 mb-4 d-flex">
                 <div class="w-100">
                     <div class="row">
+                        <!--INICIO POSTS-->
                         <div class="col-sm-6">
                             <div class="card border-0 shadow-sm mb-3">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col mt-0">
-                                            <h6 class="fw-bold text-primary">Serviços</h6>
+                                        <div class="col">
+                                            <h6 class="fw-bold text-secondary">Serviços</h6>
                                         </div>
 
-                                        <div class="col-auto text-primary">
+                                        <div class="col-auto text-secondary">
                                             <a href="{{url('admin/servicos/cadastrar')}}" tooltip="tooltip" title="Cadastrar Serviço">
-                                                <i class="bi bi-plus-circle h3"></i>
+                                                <i class="fa-solid fa-file-pen"></i>
                                             </a>                                            
                                         </div>
                                     </div>
                                     <h1 class="mt-1 mb-3">{{servicos.total}}</h1>
-
                                     <div class="row">
                                         <div class="col-auto">
-                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{servicos.ativo}}</span> <span class="badge text-secondary">Ativo</span> </span>
+                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{servicos.ativo}}</span> <span class="badge text-secondary">Disponível</span> </span>
                                         </div>
                                         <div class="col-auto">
-                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{servicos.inativo}}</span> <span class="badge text-secondary">Inativo</span> </span>  
+                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{servicos.inativo}}</span> <span class="badge text-secondary">Em desenvolvimento</span> </span>  
                                         </div>
                                     </div>
-
                                 </div>
                             </div>                                   
                         </div>
-
+                        <!--FIM POSTS-->
+                        <!--INICIO CATEGORIAS-->
                         <div class="col-sm-6">
                             <div class="card border-0 shadow-sm mb-3">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col mt-0">
-                                            <h6 class="fw-bold text-warning">Usuários</h6>
+                                        <div class="col">
+                                            <h6 class="fw-bold text-secondary">Categorias</h6>
                                         </div>
-
-                                        <div class="col-auto text-warning">
-                                            <i class="bi bi-person h3"></i>
+                                        <div class="col-auto text-secondary">
+                                            <i class="fa-solid fa-list"></i>
                                         </div>
                                     </div>
-                                    <h1 class="mt-1 mb-3">{{usuarios.total}}</h1>
-
+                                    <h1 class="mt-1 mb-3">{{categorias.total}}</h1>
                                     <div class="row">
                                         <div class="col-auto">
-                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{usuarios.ativo}}</span> <span class="badge text-secondary">Ativo</span> </span>
+                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{categorias.categoriasAtiva}}</span> <span class="badge text-secondary">Ativo</span> </span>
                                         </div>
                                         <div class="col-auto">
-                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{usuarios.inativo}}</span> <span class="badge text-secondary">Inativo</span> </span>  
+                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{categorias.categoriasInativa}}</span> <span class="badge text-secondary">Inativo</span> </span>  
                                         </div>
                                     </div>
-
                                 </div>
                             </div>                                   
                         </div>
+                        <!--FIM CATEGORIAS-->
+                        <!--INICIO USUARIOS-->
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="fw-bold text-secondary">Usuários</h6>
+                                        </div>
+                                        <div class="col-auto text-secondary">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                    </div>
+                                    <h1 class="mt-1 mb-3">{{usuarios.usuarios}}</h1>
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{usuarios.usuariosAtivo}}</span> <span class="badge text-secondary">Ativo</span> </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{usuarios.usuariosInativo}}</span> <span class="badge text-secondary">Inativo</span> </span>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                   
+                        </div>
+                        <!--FIM USUARIOS-->
+                        <!--INICIO ADMIN-->
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm mb-3">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6 class="fw-bold text-secondary">Admin</h6>
+                                        </div>
+                                        <div class="col-auto text-secondary">
+                                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                                        </div>
+                                    </div>
+                                    <h1 class="mt-1 mb-3">{{usuarios.admin}}</h1>
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-success bg-opacity-10"> <span class="text-success fw-bold">{{usuarios.adminAtivo}}</span> <span class="badge text-secondary">Ativo</span> </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="badge text-bg-danger bg-opacity-10"> <span class="text-danger fw-bold">{{usuarios.adminInativo}}</span> <span class="badge text-secondary">Inativo</span> </span>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                                   
+                        </div>
+                        <!--FIM ADMIN-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-xxl-7 mb-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-2 d-flex justify-content-between align-items-center mt-2">
+                        <div>
+                            <h6 class="fw-bold text-secondary text-center">
+                                Últimos Serviços
+                            </h6>                          
+                        </div>
+                        <a href="{{url('admin/servicos/cadastrar')}}" class="fs-5" tooltip="tooltip" title="Cadastrar Serviço">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        {% if servicos.servicos %}
+                       <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="text-center"><i class="bi bi-card-text"></i> Título serviço</th>
+                                        <th class="text-center"><i class="bi bi-eye"></i> Views</th>
+                                        <th class="text-center"><i class="bi bi-gear"></i> Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for servico in servicos.servicos %}
+                                    <tr>
+                                        <th>
+
+                                            <div>
+                                                <span>
+                                                    {% if servico.status == 1 %}
+                                                    <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
+                                                    {% else %}
+                                                    <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inativo"></i>
+                                                    {% endif %}
+                                                </span>
+                                                {{resumirTexto(servico.nome_servico, 100)}}
+                                            </div>
+                                            <small class="text-muted fw-normal">
+                                                CATEGORIA
+                                            </small>
+                                        </th>
+                                        <td class="text-center">0</td>
+                                        <td class="text-center">
+                                            <a href="{{ url('admin/servicos/editar/' ~ servico.id) }}" tooltip="tooltip" title="Editar"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ url('admin/servicos/deletar/' ~ servico.id)}}" tooltip="tooltip" title="Deletar" data-confirm="Você realmente quer deletar?"><i class="fas fa-trash-alt"></i></a>                          
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            Nenhum servico cadastrado para exibir!
+                        </div>
+                        {% endif %}
 
                     </div>
                 </div>
             </div>
 
-            <div class="col-xl-6 col-xxl-7">
-                <div class="card flex-fill w-100">
-                    Em desenvolvimento
+            <div class="col-sm-12 col-md-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow-sm  h-100">
+                    <div class="card-header bg-white border-2 d-flex justify-content-between align-items-center mt-2">
+                        <h6 class="fw-bold text-secondary">
+                            Últimas Categorias
+                        </h6> 
+
+                        <a href="{{url('admin/categorias/cadastrar')}}" class="fs-5" tooltip="tooltip" title="Cadastrar Categoria">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        {% if categorias.categorias %}
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th><i class="bi bi-person"></i> Nome</th>
+                                        <th class="text-center"><i class="bi bi-info-circle"></i> Status</th>
+                                        <th class="text-center"><i class="bi bi-gear"></i> Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for categoria in categorias.categorias %}
+                                    <tr>
+                                        <td>{{categoria.nome_categoria}}</td>
+                                        <td class="text-center">
+                                            {% if categoria.status == 1 %}
+                                            <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-circle text-danger" tooltip="tooltip" title="Inativo"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ url('admin/categorias/editar/' ~ categoria.id) }}" tooltip="tooltip" title="Editar"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ url('admin/categorias/deletar/' ~ categoria.id) }}" tooltip="tooltip" title="Deletar" data-confirm="Você realmente quer deletar?"><i class="fas fa-trash-alt"></i></a>                          
+                                        </td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </div> 
+                        {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            Nenhuma categoria cadastrada para exibir!
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!--INICIO ULTIMOS LOGIN-->
+            <div class="col-sm-6 col-md-6 col-xl-4 mb-4">
+                <div class="card border-0 shadow-sm  h-100">
+                    <div class="card-header bg-white border-0 mt-2">
+                        <h6 class="fw-bold text-secondary">
+                            Últimos Logins
+                        </h6> 
+                    </div>
+                    <div class="card-body">
+                        {% if usuarios %}
+                        <ul class="list-group list-group-flush">
+                            {% for usuario in usuarios.logins %}
+                            <li class="list-group-item">
+                                <p>
+                                    <i class="fa-solid fa-user me-2"></i>
+                                    <span class="fw-bold">{{usuario.nome}}</span>
+                                </p>                              
+                                <small class="text-muted">Há XXX tempo em xx/xx/xx às 00:00</small>
+                            </li>
+                            {%endfor%}
+                        </ul>
+                        {% else %}
+                        <div class="alert alert-warning" role="alert">
+                            Nenhum login para exibir!
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!--FIM ULTIMOS LOGIN-->
+
+            <div class="col-sm-6 col-md-12 col-xl-4 mb-4">
+                <div class="card border-0 shadow-sm  h-100">
+                    <div class="card-header bg-white border-0 mt-2">
+                        <h6 class="fw-bold text-secondary">
+                            Em desenvolvimento
+                        </h6> 
+                    </div>                   
+                    <div class="card-body">
+
+                    </div>
                 </div>
             </div>
 

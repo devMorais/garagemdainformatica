@@ -6,6 +6,7 @@ use sistema\Nucleo\Sessao;
 use sistema\Nucleo\Helpers;
 use sistema\Modelo\ServicoModelo;
 use sistema\Modelo\UsuarioModelo;
+use sistema\Modelo\CategoriaModelo;
 
 /**
  * Classe AdminDashboard
@@ -23,17 +24,29 @@ class AdminDashboard extends AdminControlador
     {
         $servicos = new ServicoModelo();
         $usuarios = new UsuarioModelo();
+        $categorias = new CategoriaModelo();
 
         echo $this->template->renderizar('dashboard.html', [
             'servicos' => [
+                'servicos' => $servicos->busca()->ordem('id DESC')->limite(5)->resultado(true),
                 'total' => $servicos->busca()->total(),
                 'ativo' => $servicos->busca('status = 1')->total(),
                 'inativo' => $servicos->busca('status = 0')->total()
             ],
+            'categorias' => [
+                'categorias' => $categorias->busca()->ordem('id DESC')->limite(5)->resultado(true),
+                'total' => $categorias->busca()->total(),
+                'categoriasAtiva' => $categorias->busca('status = 1')->total(),
+                'categoriasInativa' => $categorias->busca('status = 0')->total(),
+            ],
             'usuarios' => [
-                'total' => $usuarios->busca()->total(),
-                'ativo' => $usuarios->busca('status = 1')->total(),
-                'inativo' => $usuarios->busca('status = 0')->total()
+                'logins' => $usuarios->busca()->ordem('ultimo_login DESC')->limite(5)->resultado(true),
+                'usuarios' => $usuarios->busca('level != 3')->total(),
+                'usuariosAtivo' => $usuarios->busca('status = 1 AND level != 3')->total(),
+                'usuariosInativo' => $usuarios->busca('status = 0 AND level != 3')->total(),
+                'admin' => $usuarios->busca('level = 3')->total(),
+                'adminAtivo' => $usuarios->busca('status = 1 AND level = 3')->total(),
+                'adminInativo' => $usuarios->busca('status = 0 AND level = 3')->total()
             ],
         ]);
     }

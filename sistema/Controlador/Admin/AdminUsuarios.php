@@ -52,7 +52,7 @@ class AdminUsuarios extends AdminControlador
 
                     $usuario->nome = $dados['nome'];
                     $usuario->email = $dados['email'];
-                    $usuario->senha = $dados['senha'];
+                    $usuario->senha = Helpers::gerarSenha($dados['senha']);
                     $usuario->level = $dados['level'];
                     $usuario->status = $dados['status'];
 
@@ -87,7 +87,7 @@ class AdminUsuarios extends AdminControlador
 
                 $usuario->nome = $dados['nome'];
                 $usuario->email = $dados['email'];
-                $usuario->senha = (!empty($dados['senha']) ? $dados['senha'] : $usuario->senha);
+                $usuario->senha = (!empty($dados['senha']) ? Helpers::gerarSenha($dados['senha']) : $usuario->senha);
                 $usuario->level = $dados['level'];
                 $usuario->status = $dados['status'];
                 $usuario->atualizado_em = date('Y-m-d H:i:s');
@@ -125,7 +125,12 @@ class AdminUsuarios extends AdminControlador
             $this->mensagem->alerta('Informe um e-mail válido!')->flash();
             return false;
         }
-
+        if (!empty($dados['senha'])) {
+            if (!Helpers::validarSenha($dados['senha'])) {
+                $this->mensagem->alerta('A senha deve ter entre 6 e 50 caracteres!')->flash();
+                return false;
+            }
+        }
         return true;
     }
 

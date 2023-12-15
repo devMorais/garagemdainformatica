@@ -22,63 +22,64 @@ class SiteControlador extends Controlador
     public function index(): void
     {
         $servicos = (new ServicoModelo())->busca("status = 1");
-        
+
         echo $this->template->renderizar('index.html', [
             'servicos' => $servicos->resultado(true),
             'categorias' => $this->categorias(),
         ]);
     }
-    
-    public function buscar():void
+
+    public function buscar(): void
     {
-        $busca = filter_input(INPUT_POST,'busca', FILTER_DEFAULT);
-        if(isset($busca)){
+        $busca = filter_input(INPUT_POST, 'busca', FILTER_DEFAULT);
+        if (isset($busca)) {
             $servicos = (new ServicoModelo())->busca("status = 1 AND nome_servico LIKE '%{$busca}%'")->resultado(true);
-            
-            foreach ($servicos as $servico){
-                echo "<li class='list-group-item fw-bold'><a href=".Helpers::url('servico/').$servico->id.">$servico->nome_servico</a></li>";
+
+            if ($servicos) {
+                foreach ($servicos as $servico) {
+                    echo "<li class='list-group-item fw-bold'><a href=" . Helpers::url('servico/') . $servico->id . ">$servico->nome_servico</a></li>";
+                }
             }
         }
-        
     }
-    
+
     /**
      * Busca servico por ID
      * @param int $id
      * @return void
      */
-    public function servico(int $id):void
+    public function servico(int $id): void
     {
         $servico = (new ServicoModelo())->buscaPorId($id);
-        if(!$servico){
+        if (!$servico) {
             Helpers::redirecionar('404');
         }
-        
+
         echo $this->template->renderizar('servico.html', [
             'servico' => $servico,
             'categorias' => $this->categorias(),
         ]);
     }
-    
+
     /**
      * Categorias
      * @return array
      */
-    public function categorias(): array
+    public function categorias(): ?array
     {
-        return (new CategoriaModelo())->busca();
+        return (new CategoriaModelo())->busca("status = 1")->resultado(true);
     }
 
-    public function categoria(int $id):void
+    public function categoria(int $id): void
     {
         $servicos = (new CategoriaModelo())->servicos($id);
-        
+
         echo $this->template->renderizar('categoria.html', [
             'servicos' => $servicos,
             'categorias' => $this->categorias(),
         ]);
     }
-    
+
     /**
      * Sobre
      * @return void
@@ -89,7 +90,7 @@ class SiteControlador extends Controlador
             'nome_servico' => 'Sobre nós'
         ]);
     }
-    
+
     /**
      * ERRO 404
      * @return void
@@ -100,5 +101,4 @@ class SiteControlador extends Controlador
             'nome_servico' => 'Página não encontrada'
         ]);
     }
-
 }
