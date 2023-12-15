@@ -1,55 +1,98 @@
 {% extends 'base.html' %}
 {% block conteudo %} 
-<main id="main">
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-            <ol>
-                <li><a href="index.html">Home</a></li>
-                <li>Detalhes</li>
-            </ol>
-            <h2>Detalhes do serviço:</h2>
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">{{servico.nome_servico}}</h1>
+                    <span class="color-text-a">{% if servico.status == 1 %}Disponivel{% else %}Indisponível{% endif %}</span>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{url()}}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Detalhes
+                        </li>
+                    </ol>
+                </nav>
+            </div>
         </div>
-    </section><!-- End Breadcrumbs -->
-    <!-- ======= Portfolio Details Section ======= -->
-    <section id="portfolio-details" class="portfolio-details">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-8">
-                    <div class="portfolio-details-slider swiper">
-                        <div class="swiper-wrapper align-items-center">
-                            <div class="swiper-slide">
-                                <img src="{{url('templates/site/assets/img/portfolio/portfolio-1.jpg')}}" alt="">
+    </div>
+</section><!-- End Intro Single-->
+
+<!-- ======= Blog Single ======= -->
+<section class="news-single nav-arrow-b">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="news-img-box">
+                    <img src="{{url('templates/site/assets/img/slide-3.jpg')}}" alt="" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="post-information">
+                    <ul class="list-inline text-center color-a">
+                        <li class="list-inline-item mr-2">
+                            <strong>Author: </strong>
+                            <span class="color-text-a">Morgan Jimenez</span>
+                        </li>
+                        <li class="list-inline-item mr-2">
+                            <strong>Categoria: </strong>
+                            <span class="color-text-a">Categoria nome</span>
+                        </li>
+                        <li class="list-inline-item">
+                            <strong>Data atualização: </strong>
+                            <span class="color-text-a">19 Apr. 2017</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="post-content color-text-a">
+                    <p class="post-intro">
+                        {{servico.descricao_servico}}
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+                <div class="form-comments">
+                    <div class="title-box-d">
+                        <h3 class="title-d">Entre em contato</h3>
+                    </div>
+                    <form class="form-a">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="inputName">Seu nome</label>
+                                    <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Nome *" required>
+                                </div>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="{{url('templates/site/assets/img/portfolio/portfolio-2.jpg')}}" alt="">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="inputEmail1">Insira o e-mail</label>
+                                    <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
+                                </div>
                             </div>
-                            <div class="swiper-slide">
-                                <img src="{{url('templates/site/assets/img/portfolio/portfolio-3.jpg')}}" alt="">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="textMessage">Digite a mensagem</label>
+                                    <textarea id="textMessage" class="form-control" placeholder="Mensagem *" name="message" cols="45" rows="8" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-a">Enviar Mensagem</button>
                             </div>
                         </div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="portfolio-info">
-                        <h3>Informações</h3>
-                        <ul>
-                            <li><strong>Categoria</strong>: Web design</li>
-                            <li><strong>Ramo</strong>: Restaurante</li>
-                            <li><strong>Data do projeto</strong>: 01 March, 2020</li>
-                            <li><strong>Video demonstração</strong>: <a href="#">www.example.com</a></li>
-                        </ul>
-                    </div>
-                    <div class="portfolio-description">
-                        <h2>{{servico.nome_servico}}</h2>
-                        <p>
-                            {{servico.descricao_servico}}
-                        </p>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
-</main><!-- End #main -->
+    </div>
+</section>
+
 {% endblock %}

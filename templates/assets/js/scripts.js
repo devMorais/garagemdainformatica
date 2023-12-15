@@ -122,5 +122,3 @@ function alerta(mensagem, cor) {
         showCountdown: true
     });
 }
-
-

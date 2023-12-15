@@ -9,7 +9,7 @@ try {
 
     SimpleRouter::get(URL_SITE, 'SiteControlador@index');
     SimpleRouter::get(URL_SITE . 'sobre-nos', 'SiteControlador@sobre');
-    SimpleRouter::get(URL_SITE . 'post/{id}', 'SiteControlador@post');
+    SimpleRouter::get(URL_SITE . 'servico/{id}', 'SiteControlador@servico');
     SimpleRouter::get(URL_SITE . 'categoria/{id}', 'SiteControlador@categoria');
     SimpleRouter::post(URL_SITE . 'buscar', 'SiteControlador@buscar');
     SimpleRouter::get(URL_SITE . '404', 'SiteControlador@erro404');

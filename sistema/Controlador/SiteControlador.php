@@ -73,9 +73,11 @@ class SiteControlador extends Controlador
     public function categoria(int $id): void
     {
         $servicos = (new CategoriaModelo())->servicos($id);
+        $categoria = (new CategoriaModelo())->buscaPorId($id);
 
         echo $this->template->renderizar('categoria.html', [
             'servicos' => $servicos,
+            'categoria' => $categoria,
             'categorias' => $this->categorias(),
         ]);
     }
