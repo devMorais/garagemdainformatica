@@ -42,7 +42,10 @@
                 <thead class="thead-light">
                     <tr>
                         <th class="text-center"><i class="bi bi-key h5 text-primary"></i></th>
+                        <th><i class="bi bi-image h5 text-success"></i> Banner</th>
                         <th class="text-center"><i class="bi bi-box h5 text-primary"></i> Nome do Serviço</th>
+                        <th class="text-center"><i class="bi bi-folder h5 text-warning"></i> Categoria</th>
+                        <th class="text-center"><i class="bi bi-eye h5 text-info"></i> Visitas</th>
                         <th class="text-center"><i class="bi bi-toggle-on h5 text-warning"></i> Status</th>
                         <th class="text-center"><i class="bi bi-arrow-right h5 text-info"></i> Ação</th>
                     </tr>
@@ -51,7 +54,24 @@
                     {% for servico in servicos %}
                     <tr>
                         <td class="text-center">{{ servico.id }}</td>
+                        <th>
+                            {% if servico.capa %}
+                            <div class="float-xl-start float-lg-none capa mx-auto">
+                                <div class="card border-0">
+                                    <a data-fancybox data-caption="{{servico.descricao_servico}}" class="overflow zoom " href="{{url('uploads/imagens/'~servico.capa)}}">
+                                        <img src="{{url('uploads/imagens/'~servico.capa)}}" />
+                                    </a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <img src="{{url('templates/admin/assets/img/semcapa.png')}}" class="capa" />
+                            {% endif %} 
+                        </th>
                         <td class="text-center">{{ servico.nome_servico }}</td>
+                        <td class="text-center"> {{servico.categoria.nome_categoria}}</td>
+                        <td class="text-center">
+                           {% if servico.visitas %} {{formatarNumero(servico.visitas)}}{% else %} - {% endif %}
+                        </td>
                         <td class="text-center">
                             {% if servico.status == 1 %}
                             <i class="fa-solid fa-circle text-success" tooltip="tooltip" title="Ativo"></i>
@@ -71,18 +91,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
+                        {% if servico.capa %}
+                        <a data-fancybox data-caption="{{servico.nome_servico}}" class="overflow zoom " href="{{url('uploads/imagens/'~servico.capa)}}">
+                            <img src="{{url('uploads/imagens/'~servico.capa)}}" />
+                        </a>
+                        {% endif %}
+
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                Criado em: <b>{{ servico.cadastrado_em|date("d/m/Y H:i:s") }}</b>
+                                Cadastrado em: {{ servico.cadastrado_em|date("d/m/Y H:i:s") }}
                             </li>
                             <li class="list-group-item">
-                                Atualizado em: <b>{{servico.atualizado_em}}</b>
+                                Atualizado em: {%if servico.atualizado_em %}{{servico.atualizado_em|date("d/m/Y H:i:s")}}{%else%}Nunca{%endif%}
                             </li>
                             <li class="list-group-item">
-                                Última visita em: <b>{{servico.ultima_visita_em}}</b>
+                                Última visita em: {%if servico.ultima_visita_em %}{{servico.ultima_visita_em|date("d/m/Y H:i:s")}}{%else%}Nunca{%endif%}
                             </li>
                             <li class="list-group-item">
-                                Desenvolvido por <b>{{servico.usuario.nome}}</b>
+                                Cadastrado por: <b>{{servico.usuario.nome}}</b>
                             </li>
                         </ul>
                     </div>

@@ -113,9 +113,20 @@
     <!-- =======  Blog Grid ======= -->
     <section class="news-grid grid">
         <div class="container">
+            {% if servicos %}
             <div class="row">
                 {% for servico in servicos %}
                 <div class="col-md-4">
+                    {% if usuario().level == 3 %}
+                    <div class="card-footer border-0 bg-danger text-secondary text-end">
+                        <a href="{{ url('admin/servicos/editar/'~servico.id) }}" tooltip="tooltip" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="{{ url('admin/servicos/deletar/'~servico.id) }}" tooltip="tooltip" title="Deletar">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                    {% endif %}
                     <div class="card-box-b card-shadow news-box">
                         <div class="img-box-b">
                             <img src="{{url('templates/site/assets/img/post-1.jpg')}}" alt="" class="img-b img-fluid">
@@ -141,6 +152,11 @@
                 </div>
                 {% endfor %}
             </div>
+            {% else %}
+            <div class="alert alert-warning" role="alert">
+                Nenhum serviço cadastrado para exibir!
+            </div>
+            {% endif %}
             <div class="row">
                 <div class="col-sm-12">
                     <nav class="pagination-a">

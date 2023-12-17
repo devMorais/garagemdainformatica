@@ -9,11 +9,15 @@ use sistema\Nucleo\Helpers;
 /**
  * Classe AdminServicos
  *
- * @author Fernando
+ * @author Fernando Aguiar
  */
 class AdminServicos extends AdminControlador
 {
 
+    /**
+     * Lista servicos
+     * @return void
+     */
     public function listar(): void
     {
         $servico = new ServicoModelo();
@@ -28,6 +32,10 @@ class AdminServicos extends AdminControlador
         ]);
     }
 
+    /**
+     * Cadastra servicos
+     * @return void
+     */
     public function cadastrar(): void
     {
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -38,7 +46,7 @@ class AdminServicos extends AdminControlador
 
                 $servico->usuario_id = $this->usuario->id;
                 $servico->categoria_id = $dados['categoria_id'];
-                $servico->slug = Helpers::slug($dados['nome_servico']) . '-' . uniqid();
+                $servico->slug = Helpers::slug($dados['nome_servico']);
                 $servico->nome_servico = $dados['nome_servico'];
                 $servico->descricao_servico = $dados['descricao_servico'];
                 $servico->status = $dados['status'];
@@ -59,6 +67,11 @@ class AdminServicos extends AdminControlador
         ]);
     }
 
+    /**
+     * Edita servico pelo ID
+     * @param int $id
+     * @return void
+     */
     public function editar(int $id): void
     {
         $servico = (new ServicoModelo())->buscaPorId($id);
@@ -89,12 +102,12 @@ class AdminServicos extends AdminControlador
 
         echo $this->template->renderizar('servicos/formulario.html', [
             'servico' => $servico,
-            'categorias' => (new CategoriaModelo())->busca()->resultado(true),
+            'categorias' => (new CategoriaModelo())->busca()->resultado(true)
         ]);
     }
 
     /**
-     * Checa os dados do formulário
+     * Valida os dados do formulário
      * @param array $dados
      * @return bool
      */
@@ -105,16 +118,20 @@ class AdminServicos extends AdminControlador
             return false;
         }
         if (empty($dados['descricao_servico'])) {
-            $this->mensagem->alerta('Escreva um descricao_servico para o Serviço!')->flash();
+            $this->mensagem->alerta('Escreva um descricão para o Serviço!')->flash();
             return false;
         }
 
         return true;
     }
 
+    /**
+     * Deleta servicos por ID
+     * @param int $id
+     * @return void
+     */
     public function deletar(int $id): void
     {
-//        $id = filter_var($id, FILTER_VALIDATE_INT);
         if (is_int($id)) {
             $servico = (new ServicoModelo())->buscaPorId($id);
             if (!$servico) {
@@ -122,7 +139,7 @@ class AdminServicos extends AdminControlador
                 Helpers::redirecionar('admin/servicos/listar');
             } else {
                 if ($servico->deletar()) {
-                    $this->mensagem->sucesso('Serviço deletado com sucesso!')->flash();
+                    $this->mensagem->sucesso('Servico deletado com sucesso!')->flash();
                     Helpers::redirecionar('admin/servicos/listar');
                 } else {
                     $this->mensagem->erro($servico->erro())->flash();

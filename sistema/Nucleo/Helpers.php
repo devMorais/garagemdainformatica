@@ -8,11 +8,32 @@ use sistema\Nucleo\Sessao;
 /**
  * Classe Helper - Classe auxiliar responsável por prover métodos estáticos para manipular e validar dados no sistema.
  *
- * @author Fernando Aguiar 
+ * @author Fernando Aguiar
  * @copyright 2022 UnSet
  */
 class Helpers
 {
+
+    public static function gerarToken(int $tamanho = 16): string
+    {
+        return bin2hex(random_bytes($tamanho));
+    }
+
+    /**
+     * Cria retorno json
+     * @param string $chave
+     * @param string $valor
+     * @return void
+     */
+    public static function json(string $chave, string $valor): void
+    {
+        header('Content-Type: application/json');
+
+        $json[$chave] = $valor;
+        echo json_encode($json);
+
+        exit();
+    }
 
     /**
      * Valida a senha
@@ -57,7 +78,9 @@ class Helpers
     {
         $sessao = new Sessao();
 
-        if ($flash = $sessao->flash()) {
+        $flash = $sessao->flash();
+
+        if ($flash) {
             echo $flash;
         }
         return null;
@@ -173,8 +196,10 @@ class Helpers
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
         $ambiente = ($servidor == 'localhost' ? URL_DESENVOLVIMENTO : URL_PRODUCAO);
 
-        if (str_starts_with($url, '/')) {
-            return $ambiente . $url;
+        if (!empty($url)) {
+            if (str_starts_with($url, '/')) {
+                return $ambiente . $url;
+            }
         }
         return $ambiente . '/' . $url;
     }
@@ -292,22 +317,22 @@ class Helpers
         $hora = date('H');
 
         $saudacao = match (true) {
-            $hora >= 0 and $hora <= 5 => 'boa madrugada',
-            $hora >= 6 and $hora <= 12 => 'bom dia',
-            $hora >= 13 and $hora <= 18 => 'boa tarde',
-            default => 'boa noite'
+            $hora >= 0 and $hora <= 5 => 'Boa madrugada',
+            $hora >= 6 and $hora <= 12 => 'Bom dia',
+            $hora >= 13 and $hora <= 18 => 'Boa tarde',
+            default => 'Boa noite'
         };
 
         return $saudacao;
     }
 
     /**
-     * Resume um texto
-     * 
-     * @param string $texto texto para resumir
-     * @param int $limite quantidade de caracteres
-     * @param string $continue opcional - o que deve ser exibido ao final do resumo
-     * @return string texto resumido
+     * Resume um texto para um limite de caracteres.
+     *
+     * @param string $texto O texto a ser resumido.
+     * @param int $limite O limite de caracteres para o resumo.
+     * @param string $continue O texto que será adicionado ao final do resumo (opcional, padrão: '...').
+     * @return string O texto resumido.
      */
     public static function resumirTexto(string $texto, int $limite, string $continue = '...'): string
     {

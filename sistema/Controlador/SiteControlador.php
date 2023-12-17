@@ -31,14 +31,33 @@ class SiteControlador extends Controlador
 
     public function buscar(): void
     {
+        // Obtém o valor da variável de busca a partir do método POST
         $busca = filter_input(INPUT_POST, 'busca', FILTER_DEFAULT);
+
+        // Verifica se a variável de busca está definida
         if (isset($busca)) {
+            // Realiza a busca no modelo de Serviço
             $servicos = (new ServicoModelo())->busca("status = 1 AND nome_servico LIKE '%{$busca}%'")->resultado(true);
 
+            // Verifica se foram encontrados resultados
             if ($servicos) {
+                // Inicia a lista de resultados utilizando a classe list-group do Bootstrap
+                echo '<ul class="list-group">';
+
+                // Itera sobre os resultados e exibe cada um deles
                 foreach ($servicos as $servico) {
-                    echo "<li class='list-group-item fw-bold'><a href=" . Helpers::url('servico/') . $servico->id . ">$servico->nome_servico</a></li>";
+                    echo '<li class="list-group-item border-0">';
+                    echo '<a href="' . Helpers::url('servico/') . $servico->slug . '" class="text-decoration-none text-dark">';
+                    echo '<h5 class="mb-0">' . $servico->nome_servico . '</h5>';
+                    echo '</a>';
+                    echo '</li>';
                 }
+
+                // Finaliza a lista de resultados
+                echo '</ul>';
+            } else {
+                // Exibe uma mensagem se nenhum resultado foi encontrado
+                echo '<p class="text-muted">Nenhum resultado encontrado.</p>';
             }
         }
     }
@@ -55,9 +74,8 @@ class SiteControlador extends Controlador
         if (!$servico) {
             Helpers::redirecionar('404');
         }
-        $servico->visitas += 1;
-        $servico->ultima_visita_em = date('Y-m-d H:i:s');
-        $servico->salvar();
+
+        $servico->salvarVisitas();
 
         echo $this->template->renderizar('servico.html', [
             'servico' => $servico,
@@ -89,9 +107,7 @@ class SiteControlador extends Controlador
             Helpers::redirecionar('404');
         }
 
-        $categoria->visitas += 1;
-        $categoria->ultima_visita_em = date('Y-m-d H:i:s');
-        $categoria->salvar();
+        $categoria->salvarVisitas();
 
         echo $this->template->renderizar('categoria.html', [
             'servicos' => $servicoPorCategoria,

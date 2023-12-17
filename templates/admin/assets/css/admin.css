@@ -3,7 +3,9 @@
 body {
     font-family: "Inter", "Helvetica Neue", Arial;
 }
-
+.saudacao {
+    font-size: .7em
+}
 .sidebar {
     width: 300px;
     position: fixed;
@@ -178,6 +180,32 @@ main {
 
 .copyright {
     font-size: .8em;
+}
+
+.capa {
+    max-width: 80px
+}
+
+.pagination a{
+    color: black;
+    background: #eee
+}
+.active>.page-link {
+    background: black;
+    border-color: black
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  vertical-align: middle;
+}
+table.dataTable tbody td img {
+  display: block;
+}
+
+.thumb {
+    max-width: 80px !important;
+    border: 1px solid #999
 }
 
 @media screen and (max-width: 1200px) {

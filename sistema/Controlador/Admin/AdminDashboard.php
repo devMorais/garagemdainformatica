@@ -61,6 +61,6 @@ class AdminDashboard extends AdminControlador
         $sessao->limpar('usuarioId');
 
         $this->mensagem->informa('Você saiu do painel de controle!')->flash();
-        Helpers::redirecionar('admin/login');
+        Helpers::redirecionar();
     }
 }

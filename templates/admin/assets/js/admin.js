@@ -1,4 +1,4 @@
-new jBox('Confirm', {
+   new jBox('Confirm', {
     confirmButton: 'Faça isso!',
     cancelButton: 'Não'
 })

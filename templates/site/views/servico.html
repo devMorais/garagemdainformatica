@@ -39,24 +39,28 @@
             </div>
             <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
                 <div class="post-information">
-                    <ul class="list-inline text-center color-a">
-                        <li class="list-inline-item mr-2">
-                            <strong>Desenvolvedor : </strong>
-                            <span class="color-text-a"> {{servico.usuario.nome |upper}}</span>
+                    <ul class="list-unstyled text-center">
+                        <li class="mb-2">
+                            <strong>Desenvolvedor:</strong>
+                            <span class="text-uppercase">{{servico.usuario.nome}}</span>
                         </li>
-                        <li class="list-inline-item mr-2">
-                            <strong>Categoria :  </strong>
-                            <span class="color-text-a"> {{servico.categoria.nome_categoria |upper}}</span>
+                        <li class="mb-2">
+                            <strong>Categoria:</strong>
+                            <span class="text-uppercase">{{servico.categoria.nome_categoria}}</span>
                         </li>
-                        <li class="list-inline-item">
-                            <strong>Data atualização : </strong>
-                            <span class="color-text-a"> {{ servico.cadastrado_em|date("d/m/Y H:i") }}</span>
+                        <li class="mb-2">
+                            <strong>Data de Atualização:</strong>
+                            <span>{{ servico.cadastrado_em|date("d/m/Y H:i") }}</span>
                         </li>
-                        <li class="list-inline-item">
-                            <strong>Status : </strong>
-                            <span class="color-text-a"> {% if servico.status == 1 %}<i class="bi bi-check-circle-fill text-success"></i>
-                                Disponível{% else %}<i class="bi bi-tools text-secondary"></i>
-                                Em desenvolvimento{% endif %}</span>
+                        <li>
+                            <strong>Status:</strong>
+                            <span>
+                                {% if servico.status == 1 %}
+                                <i class="bi bi-check-circle-fill text-success"></i> Disponível
+                                {% else %}
+                                <i class="bi bi-tools text-secondary"></i> Em Desenvolvimento
+                                {% endif %}
+                            </span>
                         </li>
                     </ul>
                 </div>
