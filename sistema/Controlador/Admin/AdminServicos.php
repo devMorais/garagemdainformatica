@@ -36,8 +36,10 @@ class AdminServicos extends AdminControlador
             if ($this->validarDados($dados)) {
                 $servico = new ServicoModelo();
 
-                $servico->nome_servico = $dados['nome_servico'];
+                $servico->usuario_id = $this->usuario->id;
                 $servico->categoria_id = $dados['categoria_id'];
+                $servico->slug = Helpers::slug($dados['nome_servico']) . '-' . uniqid();
+                $servico->nome_servico = $dados['nome_servico'];
                 $servico->descricao_servico = $dados['descricao_servico'];
                 $servico->status = $dados['status'];
 
@@ -52,7 +54,7 @@ class AdminServicos extends AdminControlador
         }
 
         echo $this->template->renderizar('servicos/formulario.html', [
-            'categorias' => (new CategoriaModelo())->busca(),
+            'categorias' => (new CategoriaModelo())->busca()->resultado(true),
             'servico' => $dados
         ]);
     }
@@ -67,10 +69,13 @@ class AdminServicos extends AdminControlador
             if ($this->validarDados($dados)) {
                 $servico = (new ServicoModelo())->buscaPorId($id);
 
-                $servico->nome_servico = $dados['nome_servico'];
+                $servico->usuario_id = $this->usuario->id;
                 $servico->categoria_id = $dados['categoria_id'];
+                $servico->slug = Helpers::slug($dados['nome_servico']);
+                $servico->nome_servico = $dados['nome_servico'];
                 $servico->descricao_servico = $dados['descricao_servico'];
                 $servico->status = $dados['status'];
+                $servico->atualizado_em = date('Y-m-d H:i:s');
 
                 if ($servico->salvar()) {
                     $this->mensagem->sucesso('Serviço atualizado com sucesso')->flash();
@@ -84,7 +89,7 @@ class AdminServicos extends AdminControlador
 
         echo $this->template->renderizar('servicos/formulario.html', [
             'servico' => $servico,
-            'categorias' => (new CategoriaModelo())->busca()
+            'categorias' => (new CategoriaModelo())->busca()->resultado(true),
         ]);
     }
 
@@ -126,5 +131,4 @@ class AdminServicos extends AdminControlador
             }
         }
     }
-
 }

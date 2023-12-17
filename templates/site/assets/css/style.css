@@ -141,7 +141,7 @@ a:hover {
     font-weight: bold;
 }
 .computer-icon {
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 .no-margin {
     margin: 0;
@@ -1501,15 +1501,25 @@ a:hover {
     }
 }
 
-.card-header-b .category-b {
-    font-size: 0.9rem;
-    background-color: #ff0000;
-    padding: 0.3rem 0.7rem;
-    color: #313131;
-    letter-spacing: 0.03em;
-    border-radius: 50px;
+.card-header-b .status-i {
+    font-size: 0.8rem;
+    background-color: #f2f2f2;
+    padding: 0.2rem 0.5rem;
+    color: #555;
+    letter-spacing: 0.02em;
+    border-radius: 8px;
     text-decoration: none;
 }
+.card-header-b .status-d {
+    font-size: 0.8rem;
+    background-color: #e6f7e6; /* Um tom suave de verde */
+    padding: 0.2rem 0.5rem;
+    color: #006400; /* Uma cor de texto verde escuro para contraste */
+    letter-spacing: 0.02em;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
 
 .card-header-b .title-2 {
     margin-bottom: 0;

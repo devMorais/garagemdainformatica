@@ -7,7 +7,9 @@
             <div class="col-md-12 col-lg-8">
                 <div class="title-single-box">
                     <h1 class="title-single">{{servico.nome_servico}}</h1>
-                    <span class="color-text-a">{% if servico.status == 1 %}Disponivel{% else %}Indisponível{% endif %}</span>
+                    <span class="color-text-a">{% if servico.status == 1 %}<i class="bi bi-check-circle-fill text-success"></i>
+                        Disponível{% else %}<i class="bi bi-tools text-secondary"></i>
+                        Em desenvolvimento{% endif %}</span>
                 </div>
             </div>
             <div class="col-md-12 col-lg-4">
@@ -39,16 +41,22 @@
                 <div class="post-information">
                     <ul class="list-inline text-center color-a">
                         <li class="list-inline-item mr-2">
-                            <strong>Author: </strong>
-                            <span class="color-text-a">Morgan Jimenez</span>
+                            <strong>Desenvolvedor : </strong>
+                            <span class="color-text-a"> {{servico.usuario.nome |upper}}</span>
                         </li>
                         <li class="list-inline-item mr-2">
-                            <strong>Categoria: </strong>
-                            <span class="color-text-a">Categoria nome</span>
+                            <strong>Categoria :  </strong>
+                            <span class="color-text-a"> {{servico.categoria.nome_categoria |upper}}</span>
                         </li>
                         <li class="list-inline-item">
-                            <strong>Data atualização: </strong>
-                            <span class="color-text-a">19 Apr. 2017</span>
+                            <strong>Data atualização : </strong>
+                            <span class="color-text-a"> {{ servico.cadastrado_em|date("d/m/Y H:i") }}</span>
+                        </li>
+                        <li class="list-inline-item">
+                            <strong>Status : </strong>
+                            <span class="color-text-a"> {% if servico.status == 1 %}<i class="bi bi-check-circle-fill text-success"></i>
+                                Disponível{% else %}<i class="bi bi-tools text-secondary"></i>
+                                Em desenvolvimento{% endif %}</span>
                         </li>
                     </ul>
                 </div>

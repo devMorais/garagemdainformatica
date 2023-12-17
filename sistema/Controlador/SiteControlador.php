@@ -21,7 +21,7 @@ class SiteControlador extends Controlador
      */
     public function index(): void
     {
-        $servicos = (new ServicoModelo())->busca("status = 1");
+        $servicos = (new ServicoModelo())->busca();
 
         echo $this->template->renderizar('index.html', [
             'servicos' => $servicos->resultado(true),
@@ -44,16 +44,20 @@ class SiteControlador extends Controlador
     }
 
     /**
-     * Busca servico por ID
-     * @param int $id
+     * Busca servico por uma SLUG
+     * @param string $slug
      * @return void
      */
-    public function servico(int $id): void
+    public function servico(string $slug): void
     {
-        $servico = (new ServicoModelo())->buscaPorId($id);
+        $servico = (new ServicoModelo())->buscaPorSlug($slug);
+
         if (!$servico) {
             Helpers::redirecionar('404');
         }
+        $servico->visitas += 1;
+        $servico->ultima_visita_em = date('Y-m-d H:i:s');
+        $servico->salvar();
 
         echo $this->template->renderizar('servico.html', [
             'servico' => $servico,
@@ -70,15 +74,29 @@ class SiteControlador extends Controlador
         return (new CategoriaModelo())->busca("status = 1")->resultado(true);
     }
 
-    public function categoria(int $id): void
+    /**
+     * Lista serviços por categoria
+     * @param string $slug
+     * @return void
+     */
+    public function categoria(string $slug): void
     {
-        $servicos = (new CategoriaModelo())->servicos($id);
-        $categoria = (new CategoriaModelo())->buscaPorId($id);
+        $categoria = (new CategoriaModelo())->buscaPorSlug($slug);
+        $servicoPorCategoria = (new CategoriaModelo())->servicos($categoria->id);
+        if (!$servicoPorCategoria) {
+            $this->mensagem->informa("Serviços nesta categoria não estão disponíveis atualmente. Agradecemos sua compreensão.")->flash();
+        } elseif (!$categoria) {
+            Helpers::redirecionar('404');
+        }
+
+        $categoria->visitas += 1;
+        $categoria->ultima_visita_em = date('Y-m-d H:i:s');
+        $categoria->salvar();
 
         echo $this->template->renderizar('categoria.html', [
-            'servicos' => $servicos,
-            'categoria' => $categoria,
+            'servicos' => $servicoPorCategoria,
             'categorias' => $this->categorias(),
+            'categoria' => $categoria
         ]);
     }
 

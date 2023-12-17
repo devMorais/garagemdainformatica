@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 <!-- ======= Intro Section ======= -->
+
 <div class="intro intro-carousel swiper position-relative">
     <div class="swiper-wrapper">
         <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-1.jpg)">
@@ -81,7 +82,7 @@
     </div>
     <div class="swiper-pagination"></div>
 </div> 
-<!--<End Intro Section--> 
+<!--<End Intro Section-->
 <main id="main">
     <!-- ======= Intro Single ======= -->
     <section class="intro-single">
@@ -122,15 +123,17 @@
                         <div class="card-overlay">
                             <div class="card-header-b">
                                 <div class="card-category-b">
-                                    <a href="{{url('servico/'~servico.id)}}" class="category-b">CATEGORIA</a>
+                                    <a href="{{url('servico/'~servico.slug)}}" class="{% if servico.status == 1 %} status-d {% else %}status-i{% endif %}">{% if servico.status == 1 %}<i class="bi bi-check-circle-fill text-success"></i> Disponível {% else %}<i class="bi bi-tools text-secondary"></i> Em desenvolvimento{% endif %}</a>
                                 </div>
                                 <div class="card-title-b">
                                     <h2 class="title-2">
-                                        <a href="{{url('servico/'~servico.id)}}">{{servico.nome_servico}}</a>
+                                        <a href="{{url('servico/'~servico.slug)}}">{{servico.nome_servico}}</a>
                                     </h2>
                                 </div>
                                 <div class="card-date">
-                                    <span class="date-b">Em desenvolvimento</span>
+                                    <small class="date-b">
+                                        Desenvolvido por <b>{{servico.usuario.nome}}</b> {{contarTempo(servico.cadastrado_em)}} em <i>{{servico.categoria.nome_categoria|upper}}</i>
+                                    </small>
                                 </div>
                             </div>
                         </div>

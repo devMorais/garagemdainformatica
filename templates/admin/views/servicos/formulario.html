@@ -18,7 +18,7 @@
         <form action="{% if servico.id %}{{url('admin/servicos/editar/'~servico.id)}}{% else %}{{url('admin/servicos/cadastrar')}}{% endif %}" method="post">
             <div class="mb-3">
                 <label for="nome_servico" class="form-label">
-                    <i class="bi bi-box h5 text-primary"></i> Nome
+                    <i class="bi bi-box h5 text-primary"></i> Título
                 </label>
                 <input type="text" name="nome_servico" id="nome_servico" value="{{servico.nome_servico}}" class="form-control">
             </div>

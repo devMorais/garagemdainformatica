@@ -5,7 +5,8 @@
     {% include 'topo.html' %}
     <main>
         {% block conteudo %}          
-        <h5 class="mb-3">Dashboard <small class="saudacao text-muted"> - Saudação, Admin. Seu último login foi em xx/xx/xxxx às 00:00</small></h5>
+        <h5 class="mb-3">Dashboard <small class="saudacao text-muted"> - {{ saudacao() | upper | capitalize }}
+                , <b>{{usuario().nome}}</b>. Seu último login foi em {{usuario().ultimo_login |date('d/m/Y')}} às {{usuario().ultimo_login |date('H:m')}}</small></h5>
         {{ flash() }}
         <div class="row">
             <div class="col-xl-6 col-xxl-5 mb-4 d-flex">
@@ -131,12 +132,12 @@
                     </div>
                     <div class="card-body">
                         {% if servicos.servicos %}
-                       <div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover">
                                 <thead class="thead-light">
                                     <tr>
                                         <th class="text-center"><i class="bi bi-card-text"></i> Título serviço</th>
-                                        <th class="text-center"><i class="bi bi-eye"></i> Views</th>
+                                        <th class="text-center"><i class="bi bi-eye"></i> Visitas</th>
                                         <th class="text-center"><i class="bi bi-gear"></i> Ação</th>
                                     </tr>
                                 </thead>
@@ -156,10 +157,10 @@
                                                 {{resumirTexto(servico.nome_servico, 100)}}
                                             </div>
                                             <small class="text-muted fw-normal">
-                                                CATEGORIA
+                                                Desenvolvido por <b>{{servico.usuario.nome}}</b> {{contarTempo(servico.cadastrado_em)}} em {{servico.categoria.nome_categoria}}
                                             </small>
                                         </th>
-                                        <td class="text-center">0</td>
+                                        <td class="text-center">{{servico.visitas}}</td>
                                         <td class="text-center">
                                             <a href="{{ url('admin/servicos/editar/' ~ servico.id) }}" tooltip="tooltip" title="Editar"><i class="fas fa-edit"></i></a>
                                             <a href="{{ url('admin/servicos/deletar/' ~ servico.id)}}" tooltip="tooltip" title="Deletar" data-confirm="Você realmente quer deletar?"><i class="fas fa-trash-alt"></i></a>                          
@@ -247,7 +248,7 @@
                                     <i class="fa-solid fa-user me-2"></i>
                                     <span class="fw-bold">{{usuario.nome}}</span>
                                 </p>                              
-                                <small class="text-muted">Há XXX tempo em xx/xx/xx às 00:00</small>
+                                <small class="text-muted">{{ contarTempo(usuario.cadastrado_em) }} em {{ usuario.cadastrado_em|date("d/m/Y") }} às {{ usuario.ultimo_login|date("H:i") }}</small>
                             </li>
                             {%endfor%}
                         </ul>

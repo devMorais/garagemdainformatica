@@ -8,7 +8,7 @@ use sistema\Nucleo\Mensagem;
 /**
  * Classe Modelo
  *
- * @author Ronaldo Aires
+ * @author Fernando Aguiar
  */
 abstract class Modelo
 {
@@ -105,7 +105,7 @@ abstract class Modelo
             }
 
             if ($todos) {
-                return $stmt->fetchAll();
+                return $stmt->fetchAll(\PDO::FETCH_CLASS, static::class);
             }
 
             return $stmt->fetchObject(static::class);
@@ -177,6 +177,12 @@ abstract class Modelo
         return $busca->resultado();
     }
 
+    public function buscaPorSlug(string $slug)
+    {
+        $busca = $this->busca("slug = :s", "s={$slug}");
+        return $busca->resultado();
+    }
+
     public function apagar(string $termos)
     {
         try {
@@ -190,13 +196,13 @@ abstract class Modelo
             return null;
         }
     }
-    
+
     public function deletar()
     {
-        if(empty($this->id)){
+        if (empty($this->id)) {
             return false;
         }
-        
+
         $deletar = $this->apagar("id = {$this->id}");
         return $deletar;
     }
@@ -233,5 +239,4 @@ abstract class Modelo
         $this->dados = $this->buscaPorId($id)->dados();
         return true;
     }
-
 }

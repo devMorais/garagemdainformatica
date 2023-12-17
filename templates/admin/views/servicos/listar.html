@@ -60,11 +60,34 @@
                             {% endif %}
                         </td>
                         <td class="text-center">
+                            <a href="#info{{servico.id}}" data-bs-toggle="offcanvas" tooltip="tooltip" title="Status"><i class="fa-solid fa-arrow-trend-up"></i></a>
                             <a href="{{ url('admin/servicos/editar/' ~ servico.id) }}" tooltip="tooltip" title="Editar"><i class="fas fa-edit"></i></a>
                             <a href="{{ url('admin/servicos/deletar/' ~ servico.id)}}" tooltip="tooltip" title="Deletar" data-confirm="Você realmente quer deletar?"><i class="fas fa-trash-alt"></i></a>                          
                         </td>
                     </tr>
-                    {% endfor %}
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="info{{servico.id}}">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{servico.nome_servico}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                Criado em: <b>{{ servico.cadastrado_em|date("d/m/Y H:i:s") }}</b>
+                            </li>
+                            <li class="list-group-item">
+                                Atualizado em: <b>{{servico.atualizado_em}}</b>
+                            </li>
+                            <li class="list-group-item">
+                                Última visita em: <b>{{servico.ultima_visita_em}}</b>
+                            </li>
+                            <li class="list-group-item">
+                                Desenvolvido por <b>{{servico.usuario.nome}}</b>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
                 </tbody>
             </table>
         </div>     

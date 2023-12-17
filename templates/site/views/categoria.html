@@ -26,7 +26,9 @@
             </div>
         </div>
     </section><!-- End Intro Single-->
-
+    <div class="container my-4">
+        {{flash()}}
+    </div>
     <!-- ======= Agents Grid ======= -->
     <section class="agents-grid grid">
         <div class="container">
@@ -41,7 +43,7 @@
                             <div class="card-header-d">
                                 <div class="card-title-d align-self-center">
                                     <h3 class="title-d">
-                                        <a href="{{url('servico/'~servico.id)}}" class="link-two">{{servico.nome_servico}}</a>
+                                        <a href="{{url('servico/'~servico.slug)}}" class="link-two">{{servico.nome_servico}}</a>
                                     </h3>
                                 </div>
                             </div>

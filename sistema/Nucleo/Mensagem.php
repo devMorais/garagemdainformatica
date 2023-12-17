@@ -26,8 +26,8 @@ class Mensagem
      */
     public function sucesso(string $mensagem): Mensagem
     {
-        $this->css = 'alert alert-success alert-dismissible fade show ';
-        $this->icone = 'fas fa-check-circle me-1';
+        $this->css = 'alert alert-success alert-dismissible fade show';
+        $this->icone = 'bi bi-check-circle bi-3x me-2'; // Ícone maior
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
@@ -40,7 +40,7 @@ class Mensagem
     public function erro(string $mensagem): Mensagem
     {
         $this->css = 'alert alert-danger alert-dismissible fade show';
-        $this->icone = 'bi-x-octagon me-1';
+        $this->icone = 'bi bi-x-octagon bi-3x me-2'; // Ícone maior
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
@@ -53,7 +53,7 @@ class Mensagem
     public function alerta(string $mensagem): Mensagem
     {
         $this->css = 'alert alert-warning alert-dismissible fade show';
-        $this->icone = 'fas fa-exclamation-triangle me-1';
+        $this->icone = 'bi bi-exclamation-triangle bi-3x me-2'; // Ícone maior
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
@@ -66,7 +66,7 @@ class Mensagem
     public function informa(string $mensagem): Mensagem
     {
         $this->css = 'alert alert-primary alert-dismissible fade show';
-        $this->icone = 'fas fa-info-circle me-1';
+        $this->icone = 'bi bi-info-circle bi-3x me-2'; // Ícone maior
         $this->texto = $this->filtrar($mensagem);
         return $this;
     }
@@ -77,7 +77,15 @@ class Mensagem
      */
     public function renderizar(): string
     {
-        return "<div class='{$this->css}'><i class='{$this->icone}'></i> {$this->texto}<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+        return "
+            <div class='{$this->css}' role='alert'>
+                <div class='d-flex align-items-center'>
+                    <i class='{$this->icone}'></i>
+                    <span>{$this->texto}</span>
+                </div>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        ";
     }
 
     /**
@@ -91,7 +99,7 @@ class Mensagem
     }
 
     /**
-     * Método responsável por exibir as mensagens do sistema em flash, atráves de sessão
+     * Método responsável por exibir as mensagens do sistema em flash, através de sessão
      * @return void
      */
     public function flash(): void
