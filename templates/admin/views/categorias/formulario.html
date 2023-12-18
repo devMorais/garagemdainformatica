@@ -29,7 +29,7 @@
                 <label for="descricao_categoria" class="form-label">
                     <i class="bi bi-file-earmark-text h5 text-success"></i> Texto
                 </label>
-                <textarea name="descricao_categoria" id="descricao_categoria" class="form-control" rows="3">{{categoria.descricao_categoria}}</textarea>
+                <textarea name="descricao_categoria" id="summernote" class="form-control" rows="3">{{categoria.descricao_categoria}}</textarea>
             </div>
 
             <div class="mb-3">
@@ -45,8 +45,9 @@
                     </option>
                 </select>
             </div>
-
-            <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{%else%}Cadastrar{%endif%}">
+            <div class="d-grid">
+                <input type="submit" class="btn btn-dark" value="{% if categoria.id %}Atualizar{%else%}Cadastrar{%endif%}">
+            </div>  
         </form>
     </div>    
 </div>

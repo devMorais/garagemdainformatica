@@ -35,7 +35,7 @@
             <div class="col-sm-12">
                 <div class="news-img-box">
                     <a href="{{url('uploads/imagens/'~servico.capa)}}" data-fancybox="gallery" data-caption="{{servico.nome_servico}}">
-                        <img src="{{url('uploads/imagens/thumbs/'~servico.capa)}}" alt="{{servico.nome_servico}}" title="{{servico.nome_servico}}" class="img-fluid">
+                        <img src="{{url('uploads/imagens/thumbs/'~servico.capa)}}" alt="{{servico.nome_servico}}" title="{{servico.nome_servico}}" class="img-fluid capaGrande">
                     </a>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="post-content color-text-a">
                     <p class="post-intro">
-                        {{servico.descricao_servico}}
+                        {{servico.descricao_servico |raw}}
                     </p>
 
                 </div>

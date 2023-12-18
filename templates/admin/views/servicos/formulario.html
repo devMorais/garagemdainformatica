@@ -23,21 +23,18 @@
                 </label>
                 <input class="form-control" type="file" id="capa" name="capa" accept=".png, .jpg, .jpeg">
             </div>
-
             <div class="mb-3">
                 <label for="nome_servico" class="form-label">
                     <i class="bi bi-box h5 text-primary"></i> Título do serviço:
                 </label>
                 <input type="text" name="nome_servico" id="nome_servico" value="{{servico.nome_servico}}" class="form-control">
             </div>
-
             <div class="mb-3">
                 <label for="descricao_servico" class="form-label">
                     <i class="bi bi-file-earmark-text h5 text-success"></i> Descrição do serviço:
                 </label>
-                <textarea name="descricao_servico" id="descricao_servico" class="form-control" rows="3">{{servico.descricao_servico}}</textarea>
+                <textarea name="descricao_servico" class="form-control ckeditor" rows="3">{{servico.descricao_servico}}</textarea>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
@@ -67,7 +64,9 @@
                     </div>
                 </div>
             </div>
-            <input type="submit" class="btn btn-dark" value="{% if servico.id %}Atualizar{% else %}Cadastrar{% endif %}">
+            <div class="d-grid">
+                <input type="submit" class="btn btn-dark" value="{% if servico.id %}Atualizar{% else %}Cadastrar{% endif %}">
+            </div>
         </form>
     </div>    
 </div>

@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block conteudo %}
 <!-- ======= Intro Section ======= -->
-
 <div class="intro intro-carousel swiper position-relative">
     <div class="swiper-wrapper">
-        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-1.jpg)">
+        {% for slide in slides %}
+        <div class="swiper-slide carousel-item-a intro-item bg-image animate__animated {{random(['animate__zoomInDown','animate__lightSpeedInLeft','animate__rubberBand','animate__heartBeat'])}}" style="background-image: url({{url('uploads/imagens/thumbs/'~slide.capa)}})">
             <div class="overlay overlay-a"></div>
             <div class="intro-content display-table">
                 <div class="table-cell">
@@ -12,15 +12,14 @@
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="intro-body">
-                                    <p class="intro-title-top">Doral, Florida
-                                        <br> 78345
-                                    </p>
-                                    <h1 class="intro-title mb-4 ">
-                                        <span class="color-b">204 </span> Mount
-                                        <br> Olive Road Two
-                                    </h1>
+                                    <h3 class="intro-title mb-4">
+                                        <span class="color-b"><i>{{slide.nome_servico}}</i></span>
+                                        <br> <span class="text-white script-font" id="typed-intro"></span>
+                                    </h3>
                                     <p class="intro-subtitle intro-price">
-                                        <a href="#"><span class="price-a">rent | $ 12.000</span></a>
+                                        <a href="{{url('servico/'~slide.slug)}}" class="btn btn-danger btn-lg" style="background-color: rgba(255, 0, 0, 0.5); border-color: rgba(255, 0, 0, 0.5);">
+                                            <span class="price-a">Explore nosso projeto em detalhes <i class="bi bi-arrow-right"></i></span>
+                                        </a>
                                     </p>
                                 </div>
                             </div>
@@ -29,56 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-2.jpg)">
-            <div class="overlay overlay-a"></div>
-            <div class="intro-content display-table">
-                <div class="table-cell">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="intro-body">
-                                    <p class="intro-title-top">Doral, Florida
-                                        <br> 78345
-                                    </p>
-                                    <h1 class="intro-title mb-4">
-                                        <span class="color-b">204 </span> Rino
-                                        <br> Venda Road Five
-                                    </h1>
-                                    <p class="intro-subtitle intro-price">
-                                        <a href="#"><span class="price-a">rent | $ 12.000</span></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-slide carousel-item-a intro-item bg-image" style="background-image: url(assets/img/slide-3.jpg)">
-            <div class="overlay overlay-a"></div>
-            <div class="intro-content display-table">
-                <div class="table-cell">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="intro-body">
-                                    <p class="intro-title-top">Doral, Florida
-                                        <br> 78345
-                                    </p>
-                                    <h1 class="intro-title mb-4">
-                                        <span class="color-b">204 </span> Alira
-                                        <br> Roan Road One
-                                    </h1>
-                                    <p class="intro-subtitle intro-price">
-                                        <a href="#"><span class="price-a">rent | $ 12.000</span></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <div class="swiper-pagination"></div>
 </div> 
@@ -90,7 +40,7 @@
             <div class="row">
                 <div class="col-md-12 col-lg-8">
                     <div class="title-single-box">
-                        <h1 class="title-single">Nossos serviços</h1>
+                        <h1 class="title-single">Nossos Projetos</h1>
                         <i class="bi bi-laptop computer-icon"></i>
                         <span class="color-text-a script-font" id="typed-output"></span>
                     </div>
@@ -130,7 +80,7 @@
                     <div class="card-box-b card-shadow news-box">
                         {% if servico.capa %}
                         <div class="img-box-b">
-                            <img src="{{url('uploads/imagens/'~servico.capa)}}" alt="{{servico.nome_servico}}" title="{{servico.nome_servico}}" class="img-fluid">
+                            <img src="{{url('uploads/imagens/thumbs/'~servico.capa)}}" alt="{{servico.nome_servico}}" title="{{servico.nome_servico}}" class="img-fluid">
                         </div>
                         {% endif %}
                         <div class="card-overlay">

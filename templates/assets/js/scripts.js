@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const typedElements = document.querySelectorAll('.typed-intro');
+    const typedElements = document.querySelectorAll('#typed-intro');
     typedElements.forEach(function (element) {
         const typed = new Typed(element, {
-            strings: ['Landing Pages Cativantes', 'Vídeos 2D Inovadores', 'Websites Atraentes'],
-            typeSpeed: 100,
-            backSpeed: 50,
-            backDelay: 2000,
+            strings: ['Membros apaixonados pelo que fazem.', 'Tecnologias inovadoras que fazem a mágica acontecer.', 'Websites incrivelmente flexíveis para qualquer tela.', 'Criando experiências digitais extraordinárias.', 'Inovando para o futuro da web.', 'Transformando ideias em realidade digital.'],
+            typeSpeed: 50,
+            backSpeed: 20,
+            backDelay: 7000,
             loop: true
         });
     });

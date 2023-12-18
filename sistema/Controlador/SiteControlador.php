@@ -24,7 +24,8 @@ class SiteControlador extends Controlador
         $servicos = (new ServicoModelo())->busca();
 
         echo $this->template->renderizar('index.html', [
-            'servicos' => $servicos->resultado(true),
+            'slides' =>$servicos->ordem('id DESC')->limite(5)->resultado(true),
+            'servicos' => $servicos->ordem('id DESC')->limite(10)->offset(3)->resultado(true),
             'categorias' => $this->categorias(),
         ]);
     }
