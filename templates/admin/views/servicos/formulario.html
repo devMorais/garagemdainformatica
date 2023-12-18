@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{{url('admin/dashboard')}}">
-                Home
+                Dashboard
             </a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
@@ -13,18 +13,27 @@
         </li>
     </ol>
 </nav>
+{{flash()}}
 <div class="card border-0 shadow-sm">
     <div class="card-body">
-        <form action="{% if servico.id %}{{url('admin/servicos/editar/'~servico.id)}}{% else %}{{url('admin/servicos/cadastrar')}}{% endif %}" method="post">
+        <form action="{% if servico.id %}{{url('admin/servicos/editar/'~servico.id)}}{%else%}{{url('admin/servicos/cadastrar')}}{%endif%}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="capa" class="form-label">
+                    <i class="bi bi-image h5 text-primary"></i> Banner
+                </label>
+                <input class="form-control" type="file" id="capa" name="capa" accept=".png, .jpg, .jpeg">
+            </div>
+
             <div class="mb-3">
                 <label for="nome_servico" class="form-label">
-                    <i class="bi bi-box h5 text-primary"></i> Título
+                    <i class="bi bi-box h5 text-primary"></i> Título do serviço:
                 </label>
                 <input type="text" name="nome_servico" id="nome_servico" value="{{servico.nome_servico}}" class="form-control">
             </div>
+
             <div class="mb-3">
                 <label for="descricao_servico" class="form-label">
-                    <i class="bi bi-file-earmark-text h5 text-success"></i> Descrição
+                    <i class="bi bi-file-earmark-text h5 text-success"></i> Descrição do serviço:
                 </label>
                 <textarea name="descricao_servico" id="descricao_servico" class="form-control" rows="3">{{servico.descricao_servico}}</textarea>
             </div>

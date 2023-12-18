@@ -128,9 +128,11 @@
                     </div>
                     {% endif %}
                     <div class="card-box-b card-shadow news-box">
+                        {% if servico.capa %}
                         <div class="img-box-b">
-                            <img src="{{url('templates/site/assets/img/post-1.jpg')}}" alt="" class="img-b img-fluid">
+                            <img src="{{url('uploads/imagens/'~servico.capa)}}" alt="{{servico.nome_servico}}" title="{{servico.nome_servico}}" class="img-fluid">
                         </div>
+                        {% endif %}
                         <div class="card-overlay">
                             <div class="card-header-b">
                                 <div class="card-category-b">

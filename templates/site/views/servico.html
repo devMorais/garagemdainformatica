@@ -34,7 +34,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="news-img-box">
-                    <img src="{{url('templates/site/assets/img/slide-3.jpg')}}" alt="" class="img-fluid">
+                    <a href="{{url('uploads/imagens/'~servico.capa)}}" data-fancybox="gallery" data-caption="{{servico.nome_servico}}">
+                        <img src="{{url('uploads/imagens/thumbs/'~servico.capa)}}" alt="{{servico.nome_servico}}" title="{{servico.nome_servico}}" class="img-fluid">
+                    </a>
                 </div>
             </div>
             <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
